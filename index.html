@@ -111,6 +111,20 @@
   }
   .pic img{width:100%;height:238px;object-fit:cover;border-radius:12px;display:block}
 
+  /* 음악 단추 */
+  .snd{
+    position:fixed;top:14px;right:14px;z-index:40;
+    width:44px;height:44px;border-radius:50%;border:1px solid var(--line);
+    background:rgba(255,255,255,.9);backdrop-filter:blur(8px);
+    display:grid;place-items:center;cursor:pointer;box-shadow:var(--sh-m);
+    transition:transform .15s ease;padding:0;
+  }
+  .snd:active{transform:scale(.92)}
+  .snd svg{width:21px;height:21px;display:block}
+  .snd .off{display:none}
+  .snd.muted .on{display:none}
+  .snd.muted .off{display:block}
+
   /* 영상 */
   .vbox{
     background:#fff;border:1px solid var(--line);border-radius:19px;
@@ -204,6 +218,16 @@
 </style>
 </head>
 <body>
+<audio id="bgm" src="song/만득이네_동요.mp3" loop preload="auto"></audio>
+<button class="snd muted" id="sndBtn" type="button" aria-label="음악 켜기/끄기">
+  <svg class="on" viewBox="0 0 24 24" fill="none" stroke="#2a9d8b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/><path d="M19 6a8.5 8.5 0 0 1 0 12"/>
+  </svg>
+  <svg class="off" viewBox="0 0 24 24" fill="none" stroke="#9aa8a4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="m17 9 4 6M21 9l-4 6"/>
+  </svg>
+</button>
+
 <main class="wrap">
 
   <section class="hero">
@@ -402,6 +426,52 @@
     setTimeout(function () {
       document.querySelectorAll('.rise:not(.in)').forEach(function (el) { el.classList.add('in'); });
     }, 3000);
+  })();
+
+  // 들어오자마자 동요 틀기.
+  // 브라우저가 소리 자동재생을 막으면 첫 손길(터치·클릭·스크롤)에 바로 시작한다.
+  (function () {
+    var a = document.getElementById('bgm');
+    var btn = document.getElementById('sndBtn');
+    if (!a || !btn) return;
+    a.volume = 0.45;
+    var started = false;
+
+    function paint() { btn.classList.toggle('muted', a.paused); }
+
+    function start() {
+      if (started) return;
+      var p = a.play();
+      if (p && p.then) {
+        p.then(function () { started = true; paint(); off(); })
+         .catch(function () { /* 막혔다 — 첫 손길을 기다린다 */ });
+      } else { started = true; paint(); off(); }
+    }
+
+    var EV = ['pointerdown', 'touchstart', 'keydown', 'scroll', 'wheel'];
+    function off() { EV.forEach(function (e) { window.removeEventListener(e, onFirst); }); }
+    function onFirst() { start(); }
+
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (a.paused) { a.play(); started = true; } else { a.pause(); }
+      setTimeout(paint, 60);
+    });
+
+    // 영상을 틀면 동요는 잠시 멈춘다 (소리가 겹치지 않게)
+    var v = document.querySelector('.vbox video');
+    if (v) {
+      var wasOn = false;
+      v.addEventListener('play', function () { wasOn = !a.paused; a.pause(); paint(); });
+      v.addEventListener('pause', function () { if (wasOn) { a.play(); } paint(); });
+      v.addEventListener('ended', function () { if (wasOn) { a.play(); } paint(); });
+    }
+
+    a.addEventListener('play', paint);
+    a.addEventListener('pause', paint);
+
+    EV.forEach(function (e) { window.addEventListener(e, onFirst, { passive: true }); });
+    start();
   })();
 </script>
 </body>
