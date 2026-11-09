@@ -14,14 +14,16 @@ import os, sys, glob, subprocess, math
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 # ── 설정 ──────────────────────────────────────────
-HOLD      = 1.5     # 사진 한 장 머무는 시간(초)
-TURN      = 0.55    # 넘어가는 시간(초)
+HOLD      = float(os.environ.get("HOLD", 3.0))   # 사진 한 장 머무는 시간(초)
+TURN      = float(os.environ.get("TURN", 0.6))   # 넘어가는 시간(초)
+MUSIC     = os.environ.get("MUSIC", "")          # 얹을 노래 파일
 FPS       = 30
-BG        = (253, 248, 242)
+BG        = (247, 250, 248)     # 연한 민트 크림
 CARD      = (255, 255, 255)
-ACCENT    = (239, 154, 133)
-INK       = (59, 48, 43)
-SUB       = (139, 125, 117)
+ACCENT    = (83, 208, 190)      # 로고 민트 #53d0be
+ACCENT_D  = (42, 157, 139)
+INK       = (36, 49, 46)
+SUB       = (125, 140, 136)
 NOTCH     = 46      # 책갈피 홈 깊이(px)
 FONT_B    = r"C:\Windows\Fonts\malgunbd.ttf"
 FONT_R    = r"C:\Windows\Fonts\malgun.ttf"
@@ -40,9 +42,9 @@ def check_bg(W, H):
     d = ImageDraw.Draw(im, "RGBA")
     step = int(W / 24)
     for x in range(0, W, step):
-        d.line([(x, 0), (x, H)], fill=(239, 154, 133, 14), width=2)
+        d.line([(x, 0), (x, H)], fill=ACCENT + (16,), width=2)
     for y in range(0, H, step):
-        d.line([(0, y), (W, y)], fill=(239, 154, 133, 14), width=2)
+        d.line([(0, y), (W, y)], fill=ACCENT + (16,), width=2)
     return im
 
 
@@ -90,10 +92,17 @@ def make_card(src, W, H, idx, total):
     ch = H - top - bottom
 
     photo = Image.open(src).convert("RGB")
-    photo = cover(photo, cw, ch - NOTCH)
-
     card = Image.new("RGB", (cw, ch), CARD)
-    card.paste(photo, (0, 0))
+
+    if os.path.basename(src).lower().startswith("brand"):
+        # 로고는 잘리면 안 되니 가운데에 통째로 올린다 (표지).
+        # 카드 바탕을 로고 모서리 색으로 맞춰야 네모 자국이 안 보인다.
+        card = Image.new("RGB", (cw, ch), photo.getpixel((2, 2)))
+        side = int(cw * 0.74)
+        logo = photo.resize((side, side), Image.LANCZOS)
+        card.paste(logo, ((cw - side) // 2, (ch - NOTCH - side) // 2))
+    else:
+        card.paste(cover(photo, cw, ch - NOTCH), (0, 0))
 
     mask = bookmark_mask(cw, ch)
 
@@ -140,7 +149,9 @@ def main():
     pics = []
     for ext in ("jpg", "jpeg", "png", "webp", "JPG", "PNG"):
         pics += glob.glob(os.path.join(folder, f"*.{ext}"))
-    pics = sorted(set(pics))
+    # logo.jpg 는 p01.jpg 와 같은 사진이라 뺀다 (brand.png = 로고, 맨 앞 표지로 쓴다)
+    skip = {"logo.jpg"}
+    pics = sorted({p for p in pics if os.path.basename(p).lower() not in skip})
     if not pics:
         print(f"[!] {folder} 안에 사진이 없습니다."); return
     print(f"사진 {len(pics)}장")
@@ -170,9 +181,21 @@ def main():
         fc.append("[0:v]null[xo]"); prev = "xo"
 
     fc.append(f"[{prev}]format=yuv420p,fps={FPS}[v]")
+    total = t + TURN + HOLD            # 영상 전체 길이
     out_mp4 = os.path.join(os.path.dirname(os.path.abspath(folder)) or ".",
                            "만득이네_아이들_책갈피.mp4")
-    cmd += ["-filter_complex", ";".join(fc), "-map", "[v]",
+
+    amap = []
+    if MUSIC and os.path.exists(MUSIC):
+        cmd += ["-i", MUSIC]
+        ai = len(cards)                # 노래는 마지막 입력
+        fc.append(f"[{ai}:a]atrim=0:{total:.2f},asetpts=N/SR/TB,"
+                  f"afade=t=out:st={max(0, total - 1.6):.2f}:d=1.6,"
+                  f"loudnorm=I=-16:TP=-1.5:LRA=11[a]")
+        amap = ["-map", "[a]", "-c:a", "aac", "-b:a", "192k", "-shortest"]
+        print(f"노래 얹음: {os.path.basename(MUSIC)}  ({total:.1f}초)")
+
+    cmd += ["-filter_complex", ";".join(fc), "-map", "[v]"] + amap + [
             "-c:v", "h264_nvenc", "-preset", "p5", "-cq", "20",
             "-pix_fmt", "yuv420p", "-movflags", "+faststart", out_mp4]
 
