@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>만득이네 · 평리동 애견미용실</title>
+<meta name="description" content="대구 서구 평리동 애견미용실 만득이네 · 배냇미용 · 첫미용 · 정기관리 · 예약 우선제 1대1 맞춤관리 · 네이버 예약">
+<meta property="og:title" content="만득이네 🐾 평리동 애견미용실">
+<meta property="og:description" content="아이 컨디션에 맞춘 무리 없는 미용. 예약 우선제 · 1대1 맞춤관리. 배냇미용 · 첫미용 · 정기관리">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#fdf8f2">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root{
+    --bg:#fdf8f2;
+    --card:#ffffff;
+    --ink:#3b302b;
+    --sub:#8b7d75;
+    --line:#ece2d8;
+    --accent:#ef9a85;      /* 살구 */
+    --accent-deep:#d9705a;
+    --mint:#8cc3b2;        /* 민트 */
+    --mint-deep:#5a9d89;
+    --cream:#fbf3ea;
+    --notch:16px;          /* 책갈피 홈 깊이 */
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.55;
+    min-height:100vh;
+    /* 아주 옅은 체크 무늬 */
+    background-image:
+      linear-gradient(rgba(239,154,133,.045) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(239,154,133,.045) 1px,transparent 1px);
+    background-size:22px 22px;
+  }
+  .wrap{max-width:460px;margin:0 auto;padding:0 16px 120px}
+
+  /* ── 상단 리본 책갈피 ── */
+  .ribbon{
+    width:38px;margin:0 0 0 30px;padding:46px 0 0;
+    background:var(--accent);
+    clip-path:polygon(0 0,100% 0,100% 100%,50% calc(100% - 13px),0 100%);
+    box-shadow:0 2px 8px rgba(217,112,90,.25);
+  }
+
+  /* ── 프로필 ── */
+  .profile{text-align:center;padding:22px 0 18px}
+  .avatar{
+    width:98px;height:98px;border-radius:50%;margin:0 auto 14px;
+    background:var(--cream);display:grid;place-items:center;
+    box-shadow:0 0 0 4px var(--bg),0 0 0 6px var(--accent),0 8px 20px rgba(59,48,43,.08);
+  }
+  .avatar svg{width:50px;height:50px}
+  h1{font-size:27px;font-weight:800;letter-spacing:-.6px}
+  h1 span{color:var(--accent-deep)}
+  .tag{color:var(--sub);font-size:14px;margin-top:5px}
+  .badge{
+    display:inline-flex;align-items:center;gap:5px;margin-top:12px;
+    font-size:12px;font-weight:700;color:var(--mint-deep);
+    border:1px solid var(--mint);border-radius:999px;padding:4px 12px;
+    background:#f3faf7;
+  }
+
+  /* ── 평점 ── */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:18px 0 6px}
+  .stat{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:12px 6px;text-align:center;
+  }
+  .stat b{display:block;font-size:19px;font-weight:800;letter-spacing:-.5px}
+  .stat span{font-size:11.5px;color:var(--sub)}
+  .star{color:var(--accent)}
+  .src{font-size:11px;color:var(--sub);text-align:center;margin-top:7px}
+
+  /* ── 책갈피 버튼 ── */
+  .links{margin-top:26px}
+  .bm{
+    display:block;text-decoration:none;color:var(--ink);
+    background:var(--card);border:1px solid var(--line);
+    border-radius:16px 16px 4px 4px;
+    padding:16px 18px calc(16px + var(--notch));
+    margin-bottom:11px;
+    clip-path:polygon(0 0,100% 0,100% 100%,50% calc(100% - var(--notch)),0 100%);
+    transition:transform .13s ease, box-shadow .13s ease;
+    position:relative;
+  }
+  .bm:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(59,48,43,.09)}
+  .bm:active{transform:scale(.985)}
+  .bm .in{display:flex;align-items:center;gap:13px}
+  .bm .ic{
+    width:40px;height:40px;border-radius:12px;flex:none;
+    display:grid;place-items:center;font-size:19px;
+    background:var(--cream);
+  }
+  .bm .tx{flex:1;min-width:0}
+  .bm .tx b{display:block;font-size:16px;font-weight:700;letter-spacing:-.3px}
+  .bm .tx small{display:block;font-size:12.5px;font-weight:500;color:var(--sub);margin-top:2px}
+  .bm .arr{color:var(--sub);font-size:17px;flex:none}
+
+  /* 강조(네이버 예약) */
+  .bm.key{
+    background:var(--accent);border-color:var(--accent);color:#fff;
+    box-shadow:0 6px 18px rgba(217,112,90,.26);
+  }
+  .bm.key .ic{background:rgba(255,255,255,.3)}
+  .bm.key .tx small{color:rgba(255,255,255,.88)}
+  .bm.key .arr{color:rgba(255,255,255,.8)}
+  .bm.talk{background:#fee500;border-color:#f4dc00}
+  .bm.talk .ic{background:rgba(255,255,255,.5)}
+  .bm.talk .tx small{color:#7a6a00}
+
+  /* ── 구역 ── */
+  .sec{margin-top:30px}
+  .sec h2{font-size:15px;font-weight:800;margin:0 4px 11px;display:flex;align-items:center;gap:6px}
+
+  /* 시술 */
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{
+    background:var(--card);border:1px solid var(--line);border-radius:999px;
+    padding:8px 14px;font-size:14px;font-weight:600;
+  }
+  .chip.on{background:var(--cream);border-color:var(--accent);color:var(--accent-deep)}
+
+  /* 가격 */
+  .price{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:15px 17px}
+  .row .n{font-weight:700;font-size:15.5px}
+  .row .d{font-size:12.5px;color:var(--sub);margin-top:3px;line-height:1.5}
+  .row .p{font-weight:800;white-space:nowrap;font-size:16px;color:var(--accent-deep)}
+  .note{
+    background:var(--cream);border:1px dashed var(--line);border-radius:14px;
+    padding:13px 15px;font-size:13.5px;color:var(--sub);margin-top:10px;line-height:1.6;
+  }
+
+  /* 후기 */
+  .rv{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:15px 17px;margin-bottom:10px}
+  .rv .top{display:flex;justify-content:space-between;font-size:12px;color:var(--sub);margin-bottom:7px}
+  .rv p{font-size:14px;line-height:1.6}
+
+  /* 위치 */
+  .info{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .info .r{display:flex;gap:12px;padding:14px 17px;border-top:1px solid var(--line);font-size:14.5px}
+  .info .r:first-child{border-top:0}
+  .info .r b{flex:none;width:58px;color:var(--sub);font-weight:600;font-size:13.5px}
+  .open{color:var(--mint-deep);font-weight:700}
+
+  footer{text-align:center;color:var(--sub);font-size:12px;margin-top:34px;line-height:1.8}
+  footer .paw{font-size:16px;display:block;margin-bottom:6px}
+
+  /* ── 하단 고정 예약 ── */
+  .sticky{
+    position:fixed;left:0;right:0;bottom:0;
+    padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+    background:linear-gradient(to top,var(--bg) 72%,transparent);
+    z-index:10;
+  }
+  .sticky a{
+    display:flex;justify-content:center;align-items:center;gap:9px;
+    max-width:428px;margin:0 auto;
+    background:#03c75a;color:#fff;text-decoration:none;
+    border-radius:16px;padding:17px;font-size:17px;font-weight:800;
+    box-shadow:0 8px 22px rgba(3,199,90,.32);
+  }
+  .sticky a:active{transform:scale(.99)}
+</style>
+</head>
+<body>
+
+<div class="ribbon" aria-hidden="true"></div>
+
+<main class="wrap">
+
+  <section class="profile">
+    <div class="avatar" aria-hidden="true">
+      <!-- 발바닥 -->
+      <svg viewBox="0 0 64 64" fill="#ef9a85">
+        <ellipse cx="20" cy="20" rx="7.5" ry="10" transform="rotate(-18 20 20)"/>
+        <ellipse cx="44" cy="20" rx="7.5" ry="10" transform="rotate(18 44 20)"/>
+        <ellipse cx="9"  cy="36" rx="6.5" ry="8.5" transform="rotate(-8 9 36)"/>
+        <ellipse cx="55" cy="36" rx="6.5" ry="8.5" transform="rotate(8 55 36)"/>
+        <path d="M32 31c9 0 16 7.5 16 15.5 0 6.5-5 10.5-11 10.5-2.4 0-3.6-.9-5-.9s-2.6.9-5 .9c-6 0-11-4-11-10.5C16 38.5 23 31 32 31z"/>
+      </svg>
+    </div>
+    <h1>만득이네 <span>🐾</span></h1>
+    <p class="tag">평리동 애견미용실 · 대구 서구</p>
+    <p class="tag" style="margin-top:7px">아이 컨디션에 맞춘 무리 없는 미용</p>
+    <span class="badge">🏅 2026 KCIA 소비자평가 우수업체</span>
+  </section>
+
+  <section class="stats">
+    <div class="stat"><b class="star">★ 4.5</b><span>당근 평점</span></div>
+    <div class="stat"><b>9</b><span>후기</span></div>
+    <div class="stat"><b>102</b><span>단골</span></div>
+  </section>
+  <p class="src">2026년 11월 당근 동네업체 기준</p>
+
+  <section class="links">
+
+    <a class="bm key" href="https://m.place.naver.com/place/1204758441/ticket" target="_blank" rel="noopener">
+      <div class="in">
+        <div class="ic">📅</div>
+        <div class="tx"><b>네이버 예약</b><small>원하는 날짜 · 시간 바로 선택</small></div>
+        <div class="arr">›</div>
+      </div>
+    </a>
+
+    <a class="bm talk" href="https://open.kakao.com/o/s11rMwVh" target="_blank" rel="noopener">
+      <div class="in">
+        <div class="ic">💬</div>
+        <div class="tx"><b>카카오 오픈채팅</b><small>미용 상담 · 견적 문의</small></div>
+        <div class="arr">›</div>
+      </div>
+    </a>
+
+    <a class="bm" href="https://www.instagram.com/10000doogie/" target="_blank" rel="noopener">
+      <div class="in">
+        <div class="ic">📸</div>
+        <div class="tx"><b>인스타그램</b><small>미용 전후 사진 · 우리 아이들 일상</small></div>
+        <div class="arr">›</div>
+      </div>
+    </a>
+
+    <a class="bm" href="https://m.place.naver.com/place/1204758441/home" target="_blank" rel="noopener">
+      <div class="in">
+        <div class="ic">📍</div>
+        <div class="tx"><b>네이버 플레이스</b><small>길찾기 · 매장 사진 · 리뷰</small></div>
+        <div class="arr">›</div>
+      </div>
+    </a>
+
+    <a class="bm" href="https://www.daangn.com/kr/local-profile/%EB%A7%8C%EB%93%9D%EC%9D%B4%EB%84%A4-3t1zq4idvh56/" target="_blank" rel="noopener">
+      <div class="in">
+        <div class="ic">🥕</div>
+        <div class="tx"><b>당근 동네업체</b><small>이웃 후기 9개 · 단골 102명</small></div>
+        <div class="arr">›</div>
+      </div>
+    </a>
+
+    <a class="bm" href="https://www.threads.com/@10000doogie" target="_blank" rel="noopener">
+      <div class="in">
+        <div class="ic">🧵</div>
+        <div class="tx"><b>스레드</b><small>짧은 소식 · 공지</small></div>
+        <div class="arr">›</div>
+      </div>
+    </a>
+
+  </section>
+
+  <section class="sec">
+    <h2>✂️ 이런 미용 합니다</h2>
+    <div class="chips">
+      <span class="chip on">배냇미용</span>
+      <span class="chip on">첫미용</span>
+      <span class="chip on">정기관리</span>
+      <span class="chip">전체미용</span>
+      <span class="chip">부분미용</span>
+      <span class="chip">목욕 · 스파</span>
+      <span class="chip">발톱 · 귀 관리</span>
+    </div>
+    <div class="note">
+      <b style="color:var(--accent-deep)">예약 우선제 · 1대1 맞춤관리</b><br>
+      한 번에 한 아이만 봐 드립니다. 다른 아이와 부딪히지 않으니
+      겁 많은 아이, 첫 미용 하는 아이도 천천히 적응하며 받을 수 있어요.
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2>💰 미용비 안내</h2>
+    <div class="price">
+      <div class="row">
+        <div>
+          <div class="n">전체미용</div>
+          <div class="d">견종 · 몸무게 · 피모 · 건강상태 · 원하시는 스타일에 따라 달라집니다</div>
+        </div>
+        <div class="p">4만원~</div>
+      </div>
+    </div>
+    <p class="note">
+      정확한 금액은 아이를 보고 안내드리는 게 맞아서, 오픈채팅으로
+      견종과 몸무게, 마지막 미용 시기를 알려주시면 미리 안내해 드립니다.
+    </p>
+  </section>
+
+  <section class="sec">
+    <h2>⭐ 손님 후기</h2>
+    <div class="rv">
+      <div class="top"><span>만콩이 님</span><span class="star">★★★★★</span></div>
+      <p>사장님이 시간도 잘 맞춰서 해주시고 엄살 울강쥐 이쁘게 미용 해주셨네요</p>
+    </div>
+    <div class="rv">
+      <div class="top"><span>초코동물약국 님</span><span class="star">★★★★★</span></div>
+      <p>금손 사장님께서 정성스레 머드팩도 해주시고, 피부까지 신경써주시는 모습에 감동받았어요.</p>
+    </div>
+    <p class="src" style="text-align:left;margin-left:4px">당근 동네업체 후기에서 가져왔습니다</p>
+  </section>
+
+  <section class="sec">
+    <h2>📍 오시는 길 · 영업</h2>
+    <div class="info">
+      <div class="r"><b>주소</b><span>대구 서구 국채보상로31길 8 (평리동)</span></div>
+      <div class="r"><b>위치</b><span>서대구역 화성파크드림 근처</span></div>
+      <div class="r"><b>영업</b><span>매일 10:00 – 20:00</span></div>
+      <div class="r"><b>휴무</b><span class="open">일요일 · 공휴일도 정상영업 🤗</span></div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="paw">🐾</span>
+    만득이네 · 평리동 애견미용실<br>
+    대구광역시 서구 국채보상로31길 8
+  </footer>
+
+</main>
+
+<div class="sticky">
+  <a href="https://m.place.naver.com/place/1204758441/ticket" target="_blank" rel="noopener">
+    📅 네이버로 예약하기
+  </a>
+</div>
+
+</body>
+</html>
