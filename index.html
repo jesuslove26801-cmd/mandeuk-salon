@@ -116,6 +116,15 @@
     border-radius:18px 18px 4px 4px;box-shadow:var(--sh-m);
   }
   .pic img{width:100%;height:238px;object-fit:cover;border-radius:12px;display:block}
+  /* 비포·애프터 한 쌍 — 같은 아이가 항상 붙어 다닌다 */
+  .pic.ba{width:308px}
+  .pic.ba .two{display:flex;gap:6px}
+  .pic.ba figure{flex:1;min-width:0;position:relative;margin:0}
+  .pic.ba figcaption{
+    position:absolute;left:7px;top:7px;font-size:10px;font-weight:800;letter-spacing:.4px;
+    padding:3px 8px;border-radius:7px;background:rgba(36,49,46,.62);color:#fff;
+  }
+  .pic.ba figure.aft figcaption{background:var(--mint-deep)}
 
   /* 음악 단추 */
   .snd{
@@ -264,41 +273,31 @@
     <h2>🐶 미용 받은 아이들 <small>자동으로 넘어갑니다</small></h2>
     <div class="track">
       <div class="lane">
-        <div class="pic"><img src="photos/i01.jpg" alt="미용 받은 아이"></div>
-        <div class="pic"><img src="photos/i02.jpg" alt="미용 받은 아이"></div>
+        <div class="pic ba"><div class="two"><figure><img src="photos/i01.jpg" alt="미용 전 모습"><figcaption>BEFORE</figcaption></figure><figure class="aft"><img src="photos/i02.jpg" alt="미용 후 모습"><figcaption>AFTER</figcaption></figure></div></div>
+        <div class="pic ba"><div class="two"><figure><img src="photos/i06.jpg" alt="미용 전 모습"><figcaption>BEFORE</figcaption></figure><figure class="aft"><img src="photos/i05.jpg" alt="미용 후 모습"><figcaption>AFTER</figcaption></figure></div></div>
+        <div class="pic ba"><div class="two"><figure><img src="photos/i10.jpg" alt="미용 전 모습"><figcaption>BEFORE</figcaption></figure><figure class="aft"><img src="photos/i09.jpg" alt="미용 후 모습"><figcaption>AFTER</figcaption></figure></div></div>
+        <div class="pic ba"><div class="two"><figure><img src="photos/i04.jpg" alt="미용 전 모습"><figcaption>BEFORE</figcaption></figure><figure class="aft"><img src="photos/i07.jpg" alt="미용 후 모습"><figcaption>AFTER</figcaption></figure></div></div>
+        <div class="pic ba"><div class="two"><figure><img src="photos/i08.jpg" alt="미용 전 모습"><figcaption>BEFORE</figcaption></figure><figure class="aft"><img src="photos/i03.jpg" alt="미용 후 모습"><figcaption>AFTER</figcaption></figure></div></div>
         <div class="pic"><img src="photos/p01.jpg" alt="미용 받은 아이"></div>
-        <div class="pic"><img src="photos/i06.jpg" alt="미용 받은 아이"></div>
-        <div class="pic"><img src="photos/i05.jpg" alt="미용 받은 아이"></div>
-        <div class="pic"><img src="photos/i10.jpg" alt="미용 받은 아이"></div>
-        <div class="pic"><img src="photos/i09.jpg" alt="미용 받은 아이"></div>
         <div class="pic"><img src="photos/p02.jpg" alt="미용 받은 아이"></div>
-        <div class="pic"><img src="photos/i04.jpg" alt="미용 받은 아이"></div>
-        <div class="pic"><img src="photos/i07.jpg" alt="미용 받은 아이"></div>
-        <div class="pic"><img src="photos/p05.jpg" alt="미용 받은 아이"></div>
-        <div class="pic"><img src="photos/i08.jpg" alt="미용 받은 아이"></div>
-        <div class="pic"><img src="photos/i03.jpg" alt="미용 받은 아이"></div>
         <div class="pic"><img src="photos/p03.jpg" alt="미용 받은 아이"></div>
+        <div class="pic"><img src="photos/p04.jpg" alt="미용 받은 아이"></div>
+        <div class="pic"><img src="photos/p05.jpg" alt="미용 받은 아이"></div>
         <div class="pic"><img src="photos/p06.jpg" alt="미용 받은 아이"></div>
         <div class="pic"><img src="photos/p07.jpg" alt="미용 받은 아이"></div>
-        <div class="pic"><img src="photos/p04.jpg" alt="미용 받은 아이"></div>
         <!-- 끊김 없이 이어지도록 같은 묶음을 한 번 더 -->
-        <div class="pic"><img src="photos/i01.jpg" alt="" aria-hidden="true"></div>
-        <div class="pic"><img src="photos/i02.jpg" alt="" aria-hidden="true"></div>
-        <div class="pic"><img src="photos/p01.jpg" alt="" aria-hidden="true"></div>
-        <div class="pic"><img src="photos/i06.jpg" alt="" aria-hidden="true"></div>
-        <div class="pic"><img src="photos/i05.jpg" alt="" aria-hidden="true"></div>
-        <div class="pic"><img src="photos/i10.jpg" alt="" aria-hidden="true"></div>
-        <div class="pic"><img src="photos/i09.jpg" alt="" aria-hidden="true"></div>
-        <div class="pic"><img src="photos/p02.jpg" alt="" aria-hidden="true"></div>
-        <div class="pic"><img src="photos/i04.jpg" alt="" aria-hidden="true"></div>
-        <div class="pic"><img src="photos/i07.jpg" alt="" aria-hidden="true"></div>
-        <div class="pic"><img src="photos/p05.jpg" alt="" aria-hidden="true"></div>
-        <div class="pic"><img src="photos/i08.jpg" alt="" aria-hidden="true"></div>
-        <div class="pic"><img src="photos/i03.jpg" alt="" aria-hidden="true"></div>
-        <div class="pic"><img src="photos/p03.jpg" alt="" aria-hidden="true"></div>
-        <div class="pic"><img src="photos/p06.jpg" alt="" aria-hidden="true"></div>
-        <div class="pic"><img src="photos/p07.jpg" alt="" aria-hidden="true"></div>
-        <div class="pic"><img src="photos/p04.jpg" alt="" aria-hidden="true"></div>
+        <div class="pic ba" aria-hidden="true"><div class="two"><figure><img src="photos/i01.jpg"><figcaption>BEFORE</figcaption></figure><figure class="aft"><img src="photos/i02.jpg"><figcaption>AFTER</figcaption></figure></div></div>
+        <div class="pic ba" aria-hidden="true"><div class="two"><figure><img src="photos/i06.jpg"><figcaption>BEFORE</figcaption></figure><figure class="aft"><img src="photos/i05.jpg"><figcaption>AFTER</figcaption></figure></div></div>
+        <div class="pic ba" aria-hidden="true"><div class="two"><figure><img src="photos/i10.jpg"><figcaption>BEFORE</figcaption></figure><figure class="aft"><img src="photos/i09.jpg"><figcaption>AFTER</figcaption></figure></div></div>
+        <div class="pic ba" aria-hidden="true"><div class="two"><figure><img src="photos/i04.jpg"><figcaption>BEFORE</figcaption></figure><figure class="aft"><img src="photos/i07.jpg"><figcaption>AFTER</figcaption></figure></div></div>
+        <div class="pic ba" aria-hidden="true"><div class="two"><figure><img src="photos/i08.jpg"><figcaption>BEFORE</figcaption></figure><figure class="aft"><img src="photos/i03.jpg"><figcaption>AFTER</figcaption></figure></div></div>
+        <div class="pic" aria-hidden="true"><img src="photos/p01.jpg"></div>
+        <div class="pic" aria-hidden="true"><img src="photos/p02.jpg"></div>
+        <div class="pic" aria-hidden="true"><img src="photos/p03.jpg"></div>
+        <div class="pic" aria-hidden="true"><img src="photos/p04.jpg"></div>
+        <div class="pic" aria-hidden="true"><img src="photos/p05.jpg"></div>
+        <div class="pic" aria-hidden="true"><img src="photos/p06.jpg"></div>
+        <div class="pic" aria-hidden="true"><img src="photos/p07.jpg"></div>
       </div>
     </div>
   </section>
