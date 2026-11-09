@@ -183,6 +183,18 @@
   .price .n{font-weight:700;font-size:16.5px}
   .price .d{font-size:12.5px;color:var(--sub);margin-top:6px;line-height:1.6;clear:both}
 
+  /* 후기 키워드 */
+  .kw{display:flex;flex-direction:column;gap:7px;margin-bottom:13px}
+  .k{
+    display:flex;align-items:center;gap:11px;background:var(--card);
+    border:1px solid var(--line);border-radius:13px;padding:11px 15px;box-shadow:var(--sh-s);
+  }
+  .k b{
+    flex:none;min-width:46px;font-size:13px;font-weight:800;color:var(--mint-dark);
+    background:var(--mint-pale);border-radius:8px;padding:3px 8px;text-align:center;
+  }
+  .k span{font-size:14px;font-weight:600}
+
   /* 후기 */
   .rv{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 18px;margin-bottom:11px;box-shadow:var(--sh-s)}
   .rv .top{display:flex;justify-content:space-between;font-size:12px;color:var(--sub);margin-bottom:8px}
@@ -242,11 +254,11 @@
   </section>
 
   <section class="stats rise">
-    <div class="stat"><b>★ 4.5</b><span>평점</span></div>
+    <div class="stat"><b>★ 4.88</b><span>네이버 평점</span></div>
+    <div class="stat"><b>67</b><span>리뷰</span></div>
     <div class="stat"><b>166</b><span>인스타 팔로워</span></div>
-    <div class="stat"><b>102</b><span>단골</span></div>
   </section>
-  <p class="src">2026년 11월 기준</p>
+  <p class="src">2026년 11월 네이버 플레이스 기준</p>
 
   <section class="gal rise">
     <h2>🐶 미용 받은 아이들 <small>자동으로 넘어갑니다</small></h2>
@@ -383,24 +395,42 @@
   </section>
 
   <section class="sec rise">
-    <h2>⭐ 손님 후기 <small>당근 동네업체</small></h2>
+    <h2>⭐ 손님 후기 <small>네이버 플레이스</small></h2>
+
+    <div class="kw">
+      <div class="k"><b>49명</b><span>반려동물을 잘 다뤄줘요</span></div>
+      <div class="k"><b>47명</b><span>맞춤 케어를 잘해줘요</span></div>
+      <div class="k"><b>43명</b><span>친절해요</span></div>
+      <div class="k"><b>27명</b><span>원하는 스타일로 잘해줘요</span></div>
+      <div class="k"><b>20명</b><span>시술이 꼼꼼해요</span></div>
+    </div>
+
     <div class="rv">
-      <div class="top"><span>만콩이 님</span><span class="st">★★★★★</span></div>
-      <p>사장님이 시간도 잘 맞춰서 해주시고 엄살 울강쥐 이쁘게 미용 해주셨네요</p>
+      <div class="top"><span>영이 님</span><span class="st">★★★★★</span></div>
+      <p>이사 오기 전 9년 동안 미용만 하고 오면 스트레스 너무 받아 늘 시무룩하게 있었는데,
+         만득이네 다니고부터는 그런 게 전혀 없어졌어요. 그 점이 진짜 만득이네 최고입니다.
+         정말 금손이세요.</p>
     </div>
     <div class="rv">
-      <div class="top"><span>초코동물약국 님</span><span class="st">★★★★★</span></div>
-      <p>금손 사장님께서 정성스레 머드팩도 해주시고, 피부까지 신경써주시는 모습에 감동받았어요.</p>
+      <div class="top"><span>초롬 님</span><span class="st">★★★★★</span></div>
+      <p>첫 방문 했어요. 너무 꼼꼼하게 케어해주시고 중간중간 아이 스트레스받을까
+         쉬는 시간도 주시고, 실시간 사진과 톡으로 상태도 알려주셔서 너무 좋았어요.
+         울 두부는 여기로 정착하렵니다.</p>
+    </div>
+    <div class="rv">
+      <div class="top"><span>pyn 님</span><span class="st">★★★★★</span></div>
+      <p>원장님이 강아지를 대하는 모습이 진심이고, 좋은 제품을 사용해서 모질이 너무 좋아졌어요.
+         가위컷 전문답게 스타일리쉬하고 매우 맘에 드는 샵입니다.</p>
     </div>
   </section>
 
   <section class="sec rise">
     <h2>📍 오시는 길 · 영업</h2>
     <div class="info">
-      <div class="r"><b>주소</b><span>대구 서구 국채보상로31길 8 (평리동)</span></div>
-      <div class="r"><b>위치</b><span>서대구역 화성파크드림 근처</span></div>
+      <div class="r"><b>주소</b><span>대구 서구 국채보상로31길 8, 5호 (평리동)</span></div>
+      <div class="r"><b>위치</b><span>서대구역 화성파크드림 앞</span></div>
       <div class="r"><b>영업</b><span>매일 10:00 – 20:00</span></div>
-      <div class="r"><b>휴무</b><span class="open">일요일 · 공휴일도 정상영업 🤗</span></div>
+      <div class="r"><b>휴무</b><span class="open">연중무휴 · 일요일 공휴일도 정상영업 🤗</span></div>
     </div>
   </section>
 
