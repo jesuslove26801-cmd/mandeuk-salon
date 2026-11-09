@@ -1,4 +1,9 @@
 photos/_cards/
 photos/_skip/
+photos_ig/
+photos_pick/
 song/*.wav
 song/transcript.txt
+gallery.txt
+*.mp4
+poster.jpg

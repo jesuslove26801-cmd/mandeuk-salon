@@ -30,13 +30,24 @@
     --sh-l:0 16px 40px rgba(36,49,46,.13);
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+  html{
+    -webkit-text-size-adjust:100%;scroll-behavior:smooth;
+    overflow-x:hidden;width:100%;
+  }
   body{
     background:var(--bg); color:var(--ink);
     font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
-    line-height:1.55; min-height:100vh; overflow-x:hidden;
+    line-height:1.55; min-height:100vh;
+    overflow-x:hidden;width:100%;max-width:100%;position:relative;
     -webkit-font-smoothing:antialiased;
   }
+  /* 머리 쪽 은은한 빛 — 화면 밖으로 넘치지 않게 고정으로 깐다 */
+  body::before{
+    content:"";position:fixed;top:0;left:0;right:0;height:420px;z-index:0;
+    pointer-events:none;
+    background:radial-gradient(130% 100% at 50% 0%,#d9f5ee 0%,rgba(217,245,238,0) 62%);
+  }
+  main{position:relative;z-index:1}
   .wrap{max-width:468px;margin:0 auto;padding:0 20px 128px}
 
   /* 스크롤 등장 — 자바스크립트가 살아 있을 때만 숨긴다(안 그러면 내용이 안 보임) */
@@ -46,11 +57,6 @@
 
   /* ───── 머리 ───── */
   .hero{position:relative;text-align:center;padding:0 0 22px}
-  .hero::before{
-    content:"";position:absolute;left:50%;top:-190px;transform:translateX(-50%);
-    width:170vw;height:390px;border-radius:50%;pointer-events:none;
-    background:radial-gradient(ellipse at center,#d9f5ee 0%,rgba(217,245,238,0) 68%);
-  }
   .ribbon{
     position:relative;z-index:1;width:32px;height:64px;margin:0 0 22px 6px;
     background:linear-gradient(165deg,#6fdccb,#2a9d8b);
@@ -99,7 +105,7 @@
     -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
             mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
   }
-  .lane{display:flex;gap:14px;width:max-content;animation:flow 34s linear infinite}
+  .lane{display:flex;gap:14px;width:max-content;animation:flow 64s linear infinite}
   .track:hover .lane,.track:active .lane{animation-play-state:paused}
   @keyframes flow{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
   @media (prefers-reduced-motion:reduce){.lane{animation:none}}
@@ -124,13 +130,6 @@
   .snd .off{display:none}
   .snd.muted .on{display:none}
   .snd.muted .off{display:block}
-
-  /* 영상 */
-  .vbox{
-    background:#fff;border:1px solid var(--line);border-radius:19px;
-    padding:9px;box-shadow:var(--sh-m);
-  }
-  .vbox video{width:100%;display:block;border-radius:13px;background:#eef5f3}
 
   /* ───── 책갈피 링크 ───── */
   .links{margin-top:32px}
@@ -250,35 +249,45 @@
   <p class="src">2026년 11월 기준</p>
 
   <section class="gal rise">
-    <h2>🐶 미용 받은 아이들 <small>천천히 넘어갑니다</small></h2>
+    <h2>🐶 미용 받은 아이들 <small>자동으로 넘어갑니다</small></h2>
     <div class="track">
       <div class="lane">
-        <div class="pic"><img src="photos/p01.jpg" alt="미용 받은 포메라니안"></div>
-        <div class="pic"><img src="photos/p08.jpg" alt="미용 받은 포메라니안"></div>
-        <div class="pic"><img src="photos/p02.jpg" alt="미용 받은 비숑"></div>
-        <div class="pic"><img src="photos/p05.jpg" alt="미용 받은 포메라니안"></div>
-        <div class="pic"><img src="photos/p03.jpg" alt="미용 받은 푸들"></div>
-        <div class="pic"><img src="photos/p06.jpg" alt="미용 받은 검은 포메라니안"></div>
-        <div class="pic"><img src="photos/p07.jpg" alt="미용 받은 말티즈"></div>
-        <div class="pic"><img src="photos/p04.jpg" alt="미용 받은 시추"></div>
+        <div class="pic"><img src="photos/i01.jpg" alt="미용 받은 아이"></div>
+        <div class="pic"><img src="photos/i02.jpg" alt="미용 받은 아이"></div>
+        <div class="pic"><img src="photos/p01.jpg" alt="미용 받은 아이"></div>
+        <div class="pic"><img src="photos/i06.jpg" alt="미용 받은 아이"></div>
+        <div class="pic"><img src="photos/i05.jpg" alt="미용 받은 아이"></div>
+        <div class="pic"><img src="photos/i10.jpg" alt="미용 받은 아이"></div>
+        <div class="pic"><img src="photos/i09.jpg" alt="미용 받은 아이"></div>
+        <div class="pic"><img src="photos/p02.jpg" alt="미용 받은 아이"></div>
+        <div class="pic"><img src="photos/i04.jpg" alt="미용 받은 아이"></div>
+        <div class="pic"><img src="photos/i07.jpg" alt="미용 받은 아이"></div>
+        <div class="pic"><img src="photos/p05.jpg" alt="미용 받은 아이"></div>
+        <div class="pic"><img src="photos/i08.jpg" alt="미용 받은 아이"></div>
+        <div class="pic"><img src="photos/i03.jpg" alt="미용 받은 아이"></div>
+        <div class="pic"><img src="photos/p03.jpg" alt="미용 받은 아이"></div>
+        <div class="pic"><img src="photos/p06.jpg" alt="미용 받은 아이"></div>
+        <div class="pic"><img src="photos/p07.jpg" alt="미용 받은 아이"></div>
+        <div class="pic"><img src="photos/p04.jpg" alt="미용 받은 아이"></div>
         <!-- 끊김 없이 이어지도록 같은 묶음을 한 번 더 -->
+        <div class="pic"><img src="photos/i01.jpg" alt="" aria-hidden="true"></div>
+        <div class="pic"><img src="photos/i02.jpg" alt="" aria-hidden="true"></div>
         <div class="pic"><img src="photos/p01.jpg" alt="" aria-hidden="true"></div>
-        <div class="pic"><img src="photos/p08.jpg" alt="" aria-hidden="true"></div>
+        <div class="pic"><img src="photos/i06.jpg" alt="" aria-hidden="true"></div>
+        <div class="pic"><img src="photos/i05.jpg" alt="" aria-hidden="true"></div>
+        <div class="pic"><img src="photos/i10.jpg" alt="" aria-hidden="true"></div>
+        <div class="pic"><img src="photos/i09.jpg" alt="" aria-hidden="true"></div>
         <div class="pic"><img src="photos/p02.jpg" alt="" aria-hidden="true"></div>
+        <div class="pic"><img src="photos/i04.jpg" alt="" aria-hidden="true"></div>
+        <div class="pic"><img src="photos/i07.jpg" alt="" aria-hidden="true"></div>
         <div class="pic"><img src="photos/p05.jpg" alt="" aria-hidden="true"></div>
+        <div class="pic"><img src="photos/i08.jpg" alt="" aria-hidden="true"></div>
+        <div class="pic"><img src="photos/i03.jpg" alt="" aria-hidden="true"></div>
         <div class="pic"><img src="photos/p03.jpg" alt="" aria-hidden="true"></div>
         <div class="pic"><img src="photos/p06.jpg" alt="" aria-hidden="true"></div>
         <div class="pic"><img src="photos/p07.jpg" alt="" aria-hidden="true"></div>
         <div class="pic"><img src="photos/p04.jpg" alt="" aria-hidden="true"></div>
       </div>
-    </div>
-  </section>
-
-  <section class="sec rise">
-    <h2>🎬 영상으로 보기 <small>동요가 함께 나와요</small></h2>
-    <div class="vbox">
-      <video src="만득이네_아이들_책갈피.mp4" poster="poster.jpg"
-             controls playsinline preload="none"></video>
     </div>
   </section>
 
@@ -457,15 +466,6 @@
       if (a.paused) { a.play(); started = true; } else { a.pause(); }
       setTimeout(paint, 60);
     });
-
-    // 영상을 틀면 동요는 잠시 멈춘다 (소리가 겹치지 않게)
-    var v = document.querySelector('.vbox video');
-    if (v) {
-      var wasOn = false;
-      v.addEventListener('play', function () { wasOn = !a.paused; a.pause(); paint(); });
-      v.addEventListener('pause', function () { if (wasOn) { a.play(); } paint(); });
-      v.addEventListener('ended', function () { if (wasOn) { a.play(); } paint(); });
-    }
 
     a.addEventListener('play', paint);
     a.addEventListener('pause', paint);

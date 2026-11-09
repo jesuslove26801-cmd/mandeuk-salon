@@ -70,6 +70,6 @@ if len(sys.argv) > 1:
 res = call("POST", "/music/generations", {
     "model": "suno", "version": "v6", "custom": True, "instrumental": False,
     "title": TITLE, "prompt": LYRICS, "style": STYLE,
-    "negative_tags": NEG, "duration": 60, "audio_format": "wav",
+    "negative_tags": NEG, "duration": 180, "audio_format": "wav",
 })
 wait(res["data"][0]["task_id"])
