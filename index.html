@@ -218,6 +218,22 @@
   .rv .top{display:flex;justify-content:space-between;font-size:12px;color:var(--sub);margin-bottom:8px}
   .rv .st{color:#f5b54a;letter-spacing:1px}
   .rv p{font-size:14px;line-height:1.7}
+  /* 사장님 답글 — 손님 후기와 구분되게 한 칸 들여쓴다 */
+  .rp{
+    margin:13px 0 0 14px;padding:13px 15px;
+    background:var(--mint-pale);border:1px solid #d9efe9;
+    border-radius:4px 14px 14px 14px;position:relative;
+  }
+  .rp::before{
+    content:"";position:absolute;left:-14px;top:0;bottom:0;width:2px;
+    background:#cfeae2;border-radius:2px;
+  }
+  .rp .who{
+    display:flex;align-items:center;gap:7px;margin-bottom:7px;
+    font-size:12px;font-weight:800;color:var(--mint-dark);letter-spacing:-.2px;
+  }
+  .rp .who img{width:20px;height:20px;border-radius:50%;background:#fff;flex:none}
+  .rp p{font-size:13.5px;line-height:1.8;color:#4f5f5b}
   /* 후기 더 보기 */
   .more{
     display:flex;align-items:center;justify-content:center;gap:7px;width:100%;
@@ -429,17 +445,38 @@
       <p>이사 오기 전 9년 동안 미용만 하고 오면 스트레스 너무 받아 늘 시무룩하게 있었는데,
          만득이네 다니고부터는 그런 게 전혀 없어졌어요. 그 점이 진짜 만득이네 최고입니다.
          정말 금손이세요.</p>
+      <div class="rp">
+        <div class="who"><img src="photos/w/brand.webp" alt="" width="340" height="340">사장님 답글</div>
+        <p>안녕하세요 보호자님🤎 우리 이쁜 쪼코 🍫 … 생일 기념 가족사진 찍으신대서
+           있는 털 없는 털 짧지만 일단 다 끌어모아서 귀툭튀에 스포팅 느낌을 내보았는데
+           좋아해주셔서 감사해요🫶 우리 코야 방문할 때마다 좋은 기억 가지고 갈 수 있게
+           항상 최선을 다할게용💕</p>
+      </div>
     </div>
     <div class="rv">
       <div class="top"><span>초롬 님</span><span class="st">★★★★★</span></div>
       <p>첫 방문 했어요. 너무 꼼꼼하게 케어해주시고 중간중간 아이 스트레스받을까
          쉬는 시간도 주시고, 실시간 사진과 톡으로 상태도 알려주셔서 너무 좋았어요.
          울 두부는 여기로 정착하렵니다.</p>
+      <div class="rp">
+        <div class="who"><img src="photos/w/brand.webp" alt="" width="340" height="340">사장님 답글</div>
+        <p>넘넘 이쁜 우리 천사 두부 🩷🤍 보호자니이임 안녕하세요😊 … 두부가 첫 방문이라
+           맡겨두시고 궁금하실 것 같아 중간중간 톡을 많이 드렸는데 귀찮아하시지 않고
+           오히려 좋아해 주셔서 감사했어요🫶 앞으로도 우리 두부가 만득이네에 올 때마다
+           편안하고 좋은 기억 하나씩 쌓아갈 수 있도록 정성껏 함께할게요 👐</p>
+      </div>
     </div>
     <div class="rv">
       <div class="top"><span>pyn 님</span><span class="st">★★★★★</span></div>
       <p>원장님이 강아지를 대하는 모습이 진심이고, 좋은 제품을 사용해서 모질이 너무 좋아졌어요.
          가위컷 전문답게 스타일리쉬하고 매우 맘에 드는 샵입니다.</p>
+      <div class="rp">
+        <div class="who"><img src="photos/w/brand.webp" alt="" width="340" height="340">사장님 답글</div>
+        <p>앜!!!!!! 돌잔치하고 미모최고점 갱신한 우리 만복이🩷 보호자님 안녕하세요🤗
+           우리 만복이 오는 날은 전날부터 기부니가 너무 좋아요 ㅠ 저만의 힐링타임이기에🫶
+           꼬꼬마 배냇미용부터 꾸준히 방문해주셔서 넘넘 감사드리구 …
+           제품에 목숨 거는 스타일인데 알아봐주셔서 너무 뿌듯해요오🥹</p>
+      </div>
     </div>
 
     <div id="moreRv" hidden>
@@ -447,20 +484,44 @@
         <div class="top"><span>먹을거조와 님</span><span class="st">★★★★★</span></div>
         <p>겁이 너무 많아서 집에서 발톱 깎이는 것도 힘든데 너무 깔끔하게 미용해주셨어요.
            감사합니다. 집에 와서 밥 먹고 물 먹고 우다다 엄청 했어요.</p>
+        <div class="rp">
+          <div class="who"><img src="photos/w/brand.webp" alt="" width="340" height="340">사장님 답글</div>
+          <p>앗!!! 우리 세상 쫄보 쪼랭이래여어~🤪 안녕하세요 보호자님❣️ 우리 귀염둥이
+             쪼랭이 발도 무섭고 목욕도 무섭고 했지만 ㅋㅋ 그래도 착하게 집중력 있게
+             잘 해줬어용🩷 … 방문 넘넘 감사합니다아🫶</p>
+        </div>
       </div>
       <div class="rv">
         <div class="top"><span>HK 님</span><span class="st">★★★★★</span></div>
         <p>처음부터 세심하게 상담해 주시고, 미용도 너무 예쁘게 해주셨어요.
            우리 강쥐가 힘들지 않도록 컨디션을 살펴가며 미용해 주신 게 느껴져서 더욱 감사했어요.
            중간중간 사진도 보내주셔서 걱정 없이 마음 놓고 기다릴 수 있었답니다.</p>
+        <div class="rp">
+          <div class="who"><img src="photos/w/brand.webp" alt="" width="340" height="340">사장님 답글</div>
+          <p>우리 쿠키 아가🍪🤎 보호자님 안녕하세요 👋 소중한 우리 쿠키의 첫 배냇미용을
+             만득이네와 함께해 주셔서 정말 감사해요🩷 처음 하는 미용인데도 사교성도 좋고
+             적응력도 어찌나 좋은지, 중간에 꾸벅꾸벅 졸기까지 하는 모습이 넘넘 귀여웠답니당 😴😍</p>
+        </div>
       </div>
       <div class="rv">
         <div class="top"><span>비누말자 님</span><span class="st">★★★★★</span></div>
         <p>얼굴이랑 몸 라인이 정말 자연스럽고 손이 많이 간 게 느껴지네요. 감사합니다.</p>
+        <div class="rp">
+          <div class="who"><img src="photos/w/brand.webp" alt="" width="340" height="340">사장님 답글</div>
+          <p>안녕하세요 우리 이쁜 비누 보호자님❣️ 요번에는 귀툭으로 스타일 변형을 해서
+             맘에 드실까 걱정했는데 좋아해주셔서 넘넘 감사해요🥹 다음에도 자연스러운
+             스타일링 꼼꼼하게 진행하겠습니닷!!! 우리 말자한테도 안부 전해주세용 🤭</p>
+        </div>
       </div>
       <div class="rv">
         <div class="top"><span>보글 님</span><span class="st">★★★★★</span></div>
         <p>어느새 믿고 맡기는 곳. 한결같이 정성스러워 좋아요. 감사합니다.</p>
+        <div class="rp">
+          <div class="who"><img src="photos/w/brand.webp" alt="" width="340" height="340">사장님 답글</div>
+          <p>안녕하세요 보호자님❣️ 한결같다는 말씀이 너무 힘이 되네요 ㅠㅠㅠ 저도 한결같이
+             늘 찾아주셔서 너무 감사드립니다 언제나 우리 강아지를 대하는 마음으로!!
+             따뜻한 마음 함께 할게용🩷</p>
+        </div>
       </div>
     </div>
 
