@@ -310,7 +310,7 @@
     </div>
     <h1>만득이네</h1>
     <p class="sub1">평리동 애견미용실 · 대구 서구</p>
-    <p class="sub2">아이를 향한 진심이 머무는 곳</p>
+    <p class="sub2" data-c="sub2">아이를 향한 진심이 머무는 곳</p>
     <span class="badge">🏅 2026 KCIA 소비자평가 우수업체</span>
   </section>
 
@@ -322,9 +322,9 @@
   <p class="src">2026년 11월 네이버 플레이스 기준</p>
 
   <section class="gal rise">
-    <h2>🐶 미용 받은 아이들 <small id="galHint">눌러서 멈춤</small></h2>
+    <h2>🐶 <span data-c="galTitle">미용 받은 아이들</span> <small id="galHint">눌러서 멈춤</small></h2>
     <div class="track">
-      <div class="lane">
+      <div class="lane" id="lane">
         <div class="pic ba"><div class="two"><figure><img src="photos/w/i01.webp" alt="미용 전 모습" onerror="this.onerror=null;this.src='photos/i01.jpg'" width="440" height="587"><figcaption>미용 전</figcaption></figure><figure class="aft"><img src="photos/w/i02.webp" alt="미용 후 모습" onerror="this.onerror=null;this.src='photos/i02.jpg'" width="440" height="586"><figcaption>미용 후</figcaption></figure></div></div>
         <div class="pic ba"><div class="two"><figure><img src="photos/w/i06.webp" alt="미용 전 모습" onerror="this.onerror=null;this.src='photos/i06.jpg'" width="440" height="440"><figcaption>미용 전</figcaption></figure><figure class="aft"><img src="photos/w/i05.webp" alt="미용 후 모습" onerror="this.onerror=null;this.src='photos/i05.jpg'" width="440" height="440" loading="lazy" decoding="async"><figcaption>미용 후</figcaption></figure></div></div>
         <div class="pic ba"><div class="two"><figure><img src="photos/w/i10.webp" alt="미용 전 모습" onerror="this.onerror=null;this.src='photos/i10.jpg'" width="440" height="440" loading="lazy" decoding="async"><figcaption>미용 전</figcaption></figure><figure class="aft"><img src="photos/w/i09.webp" alt="미용 후 모습" onerror="this.onerror=null;this.src='photos/i09.jpg'" width="440" height="440" loading="lazy" decoding="async"><figcaption>미용 후</figcaption></figure></div></div>
@@ -416,22 +416,22 @@
       <span class="chip">발톱 · 귀 케어</span>
     </div>
     <div class="note">
-      <b>1:1 예약제 · 맞춤 케어</b>
-      <p class="pl">한 번에 한 아이에게만 집중합니다.<br>
+      <b data-c="noteTitle">1:1 예약제 · 맞춤 케어</b>
+      <div data-c="noteBody" data-rich="1"><p class="pl">한 번에 한 아이에게만 집중합니다.<br>
       다른 아이와 마주칠 일이 적어 낯가림이 있거나 겁이 많은 아이도
       조금 더 편안하게 미용받을 수 있어요.</p>
-      <p class="pl">아이의 성향과 컨디션을 살피며 서두르지 않고 진행합니다.</p>
+      <p class="pl">아이의 성향과 컨디션을 살피며 서두르지 않고 진행합니다.</p></div>
     </div>
   </section>
 
   <section class="sec rise">
     <h2>💰 미용 금액 안내</h2>
     <div class="price">
-      <p class="n">견종과 몸무게에 따라 기본 미용 금액이 달라집니다.</p>
-      <p class="d">피모 상태, 엉킴 정도, 털 길이, 원하는 스타일 및 미용 난이도에 따라
+      <p class="n" data-c="priceN">견종과 몸무게에 따라 기본 미용 금액이 달라집니다.</p>
+      <p class="d" data-c="priceD">피모 상태, 엉킴 정도, 털 길이, 원하는 스타일 및 미용 난이도에 따라
         추가 비용이 발생할 수 있습니다.</p>
     </div>
-    <div class="note">
+    <div class="note" data-c="priceNote" data-rich="1">
       오픈채팅으로 <b>견종 · 몸무게 · 마지막 미용 시기</b>를 알려주시면<br>
       기준 금액을 먼저 안내해 드릴게요.
     </div>
@@ -539,11 +539,11 @@
   <section class="sec rise">
     <h2>📍 오시는 길 · 영업</h2>
     <div class="info">
-      <div class="r"><b>주소</b><span>대구 서구 국채보상로31길 8, 5호 (평리동)</span></div>
-      <div class="r"><b>위치</b><span>서대구역 화성파크드림 앞</span></div>
-      <div class="r"><b>주차</b><span>가게 앞에 주차하실 수 있어요 🚗</span></div>
-      <div class="r"><b>영업</b><span>매일 10:00 – 20:00</span></div>
-      <div class="r"><b>휴무</b><span class="open">연중무휴 · 일요일 공휴일도 정상영업 🤗</span></div>
+      <div class="r"><b>주소</b><span data-c="addr">대구 서구 국채보상로31길 8, 5호 (평리동)</span></div>
+      <div class="r"><b>위치</b><span data-c="loc">서대구역 화성파크드림 앞</span></div>
+      <div class="r"><b>주차</b><span data-c="park">가게 앞에 주차하실 수 있어요 🚗</span></div>
+      <div class="r"><b>영업</b><span data-c="hours">매일 10:00 – 20:00</span></div>
+      <div class="r"><b>휴무</b><span class="open" data-c="off">연중무휴 · 일요일 공휴일도 정상영업 🤗</span></div>
       <a class="way" href="https://m.place.naver.com/place/1204758441/location" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="#2a9d8b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l19-8-8 19-2.5-8.5z"/></svg>
         길찾기 열기
@@ -646,6 +646,59 @@
 
     EV.forEach(function (e) { window.addEventListener(e, onFirst, { passive: true }); });
     start();
+  })();
+
+  // ── 사장님이 관리자 페이지에서 고친 내용을 입힌다 ──
+  // content.json 을 못 읽으면 아무것도 건드리지 않는다. 그래서 페이지는 늘 멀쩡하다.
+  (function () {
+    function esc(s) {
+      return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+    // *굵게* 와 줄바꿈만 허용한다. 그 밖의 태그는 글자로 보여 준다.
+    function rich(s) {
+      return esc(s).replace(/\*([^*\n]+)\*/g, '<b>$1</b>').replace(/\n/g, '<br>');
+    }
+    function paras(s) {
+      return String(s).split(/\n{2,}/).map(function (p) {
+        return '<p class="pl">' + rich(p) + '</p>';
+      }).join('');
+    }
+
+    function card(pair, dup) {
+      var hid = dup ? ' aria-hidden="true"' : '';
+      return '<div class="pic ba"' + hid + '><div class="two">' +
+        '<figure><img src="' + esc(pair.before) + '" alt="미용 전 모습" loading="lazy" decoding="async">' +
+        '<figcaption>미용 전</figcaption></figure>' +
+        '<figure class="aft"><img src="' + esc(pair.after) + '" alt="미용 후 모습" loading="lazy" decoding="async">' +
+        '<figcaption>미용 후</figcaption></figure>' +
+        '</div></div>';
+    }
+
+    fetch('content.json?v=' + Date.now()).then(function (r) {
+      if (!r.ok) throw 0;
+      return r.json();
+    }).then(function (c) {
+      var t = c && c.text;
+      if (t) {
+        document.querySelectorAll('[data-c]').forEach(function (el) {
+          var v = t[el.getAttribute('data-c')];
+          if (v == null || v === '') return;
+          if (el.getAttribute('data-c') === 'noteBody') el.innerHTML = paras(v);
+          else if (el.hasAttribute('data-rich')) el.innerHTML = rich(v);
+          else el.textContent = v;
+        });
+      }
+      var lane = document.getElementById('lane');
+      if (lane && c && c.gallery && c.gallery.length) {
+        var g = c.gallery.filter(function (p) { return p && p.before && p.after; });
+        if (g.length) {
+          lane.innerHTML = g.map(function (p) { return card(p, false); }).join('') +
+                           g.map(function (p) { return card(p, true); }).join('');
+          // 장수가 늘거나 줄어도 흘러가는 속도는 그대로 (한 장당 12.8초)
+          lane.style.animationDuration = (g.length * 12.8).toFixed(1) + 's';
+        }
+      }
+    }).catch(function () { /* 원래 내용 그대로 둔다 */ });
   })();
 </script>
 </body>

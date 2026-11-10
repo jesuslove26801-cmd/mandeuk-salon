@@ -1,0 +1,24 @@
+{
+  "updated": "2026-11-10",
+  "gallery": [
+    { "before": "photos/w/i01.webp", "after": "photos/w/i02.webp" },
+    { "before": "photos/w/i06.webp", "after": "photos/w/i05.webp" },
+    { "before": "photos/w/i10.webp", "after": "photos/w/i09.webp" },
+    { "before": "photos/w/i04.webp", "after": "photos/w/i07.webp" },
+    { "before": "photos/w/i08.webp", "after": "photos/w/i03.webp" }
+  ],
+  "text": {
+    "sub2": "아이를 향한 진심이 머무는 곳",
+    "galTitle": "미용 받은 아이들",
+    "noteTitle": "1:1 예약제 · 맞춤 케어",
+    "noteBody": "한 번에 한 아이에게만 집중합니다.\n다른 아이와 마주칠 일이 적어 낯가림이 있거나 겁이 많은 아이도 조금 더 편안하게 미용받을 수 있어요.\n\n아이의 성향과 컨디션을 살피며 서두르지 않고 진행합니다.",
+    "priceN": "견종과 몸무게에 따라 기본 미용 금액이 달라집니다.",
+    "priceD": "피모 상태, 엉킴 정도, 털 길이, 원하는 스타일 및 미용 난이도에 따라 추가 비용이 발생할 수 있습니다.",
+    "priceNote": "오픈채팅으로 *견종 · 몸무게 · 마지막 미용 시기*를 알려주시면\n기준 금액을 먼저 안내해 드릴게요.",
+    "addr": "대구 서구 국채보상로31길 8, 5호 (평리동)",
+    "loc": "서대구역 화성파크드림 앞",
+    "park": "가게 앞에 주차하실 수 있어요 🚗",
+    "hours": "매일 10:00 – 20:00",
+    "off": "연중무휴 · 일요일 공휴일도 정상영업 🤗"
+  }
+}
