@@ -168,18 +168,15 @@
       <button class="skip" id="gSkip" type="button">그냥 둘러보기</button>
     </div>
 
-    <!-- 처음 한 번: 열쇠를 비밀번호로 잠근다 -->
+    <!-- 열쇠 넣기 (형 전용, 주소 뒤에 #key 를 붙이면 나온다) -->
     <div id="gSetup" hidden>
-      <h2>🔑 처음 설정</h2>
-      <p>깃허브 열쇠를 비밀번호로 잠가 둡니다. 이 설정은 한 번만 하면 됩니다.</p>
+      <h2>🔑 열쇠 넣기</h2>
+      <p>깃허브 열쇠를 비밀번호로 잠가 둡니다. 한 번만 하면 됩니다.</p>
       <input type="password" id="sTok" placeholder="깃허브 열쇠 붙여넣기 (github_pat_…)" autocomplete="off">
-      <input type="password" id="sPw1" placeholder="사장님이 쓸 비밀번호" autocomplete="new-password">
+      <input type="password" id="sPw1" placeholder="비밀번호" autocomplete="new-password">
       <input type="password" id="sPw2" placeholder="비밀번호 다시 한 번" autocomplete="new-password">
       <button id="setupOk" type="button">잠그고 시작하기</button>
       <button class="skip" id="gSkip2" type="button">그냥 둘러보기</button>
-      <div class="note" style="margin-bottom:0">
-        비밀번호는 어디에도 저장되지 않습니다. 잊어버리면 이 설정을 처음부터 다시 해야 합니다.
-      </div>
     </div>
 
     <p class="err" id="gateErr" hidden></p>
@@ -247,6 +244,7 @@
   var REPO = 'jesuslove26801-cmd/mandeuk-salon';
   var API = 'https://api.github.com/repos/' + REPO + '/contents/';
   var KEY = 'mandeuk_admin_token';
+  var OPEN = 'mandeuk_admin_open';
 
   // 문구 항목 — 홈페이지 어디에 나오는지 사장님 말로 적는다
   var FIELDS = [
@@ -282,22 +280,27 @@
   function busy(m) { var e = $('gBusy'); e.textContent = m || ''; e.hidden = !m; }
 
   // 기억해 둔 열쇠가 있으면 비밀번호 없이 바로
-  try { token = sessionStorage.getItem(KEY) || localStorage.getItem(KEY) || ''; } catch (e) { token = ''; }
-
-  if (token) {
-    $('gate').hidden = true;
-    load();
-  } else {
-    fetch('key.json?v=' + Date.now(), { cache: 'no-store' })
-      .then(function (r) { return r.ok ? r.json() : null; })
-      .catch(function () { return null; })
-      .then(function (k) {
-        if (k && k.salt && k.iv && k.data) { vault = k; $('gLogin').hidden = false; $('pw').focus(); }
-        else { $('gSetup').hidden = false; }
-      });
-  }
+  var wasOpen = false;
+  try {
+    token = sessionStorage.getItem(KEY) || localStorage.getItem(KEY) || '';
+    wasOpen = !!(sessionStorage.getItem(OPEN) || localStorage.getItem(OPEN));
+  } catch (e) { token = ''; }
 
   var vault = null;
+  var unlocked = false;   // 비밀번호를 맞췄는가
+  var wantKey = location.hash === '#key';   // 형이 열쇠를 넣으러 왔는가
+
+  fetch('key.json?v=' + Date.now(), { cache: 'no-store' })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .catch(function () { return null; })
+    .then(function (k) {
+      vault = k;
+      if (wantKey) { $('gSetup').hidden = false; return; }
+      if (!k || !k.check) { $('gSetup').hidden = false; return; }   // 아직 비번이 없다
+      if (wasOpen) { unlocked = true; $('gate').hidden = true; load(); return; }
+      $('gLogin').hidden = false;
+      $('pw').focus();
+    });
 
   $('pwOk').addEventListener('click', unlock);
   $('pw').addEventListener('keydown', function (e) { if (e.key === 'Enter') unlock(); });
@@ -307,12 +310,23 @@
     if (!pw) { showErr('비밀번호를 넣어 주세요.'); return; }
     showErr(''); busy('여는 중…');
     $('pwOk').disabled = true;
-    decrypt(vault, pw)
+
+    verify(vault, pw)
+      .then(function (ok) {
+        if (!ok) throw new Error('bad');
+        // 열쇠가 들어 있으면 같이 풀어 둔다 (없으면 보기·고치기만 된다)
+        if (vault.data && vault.iv) {
+          return decrypt(vault, pw).then(function (t) { return t; }, function () { return ''; });
+        }
+        return '';
+      })
       .then(function (t) {
-        token = t;
+        unlocked = true;
+        token = t || '';
         try {
-          if ($('remember').checked) localStorage.setItem(KEY, t);
-          else sessionStorage.setItem(KEY, t);
+          var store = $('remember').checked ? localStorage : sessionStorage;
+          store.setItem(OPEN, '1');
+          if (token) store.setItem(KEY, token);
         } catch (e) {}
         busy(''); $('gate').hidden = true;
         load();
@@ -337,12 +351,24 @@
         if (r.status === 401 || r.status === 403) throw new Error('열쇠가 맞지 않거나 권한이 모자랍니다.');
         if (!r.ok) throw new Error('깃허브에 연결하지 못했습니다.');
         busy('비밀번호로 잠그는 중…');
-        return encrypt(tk, p1);
+        return encrypt(tk, p1).then(function (k) {
+          return rawKey(p1, b642ab(k.salt), k.iter)
+            .then(function (bits) { return crypto.subtle.digest('SHA-256', bits); })
+            .then(function (h) { k.check = ab2b64(new Uint8Array(h)); return k; });
+        });
       })
       .then(function (k) {
         busy('저장하는 중…');
         token = tk;
-        return put('key.json', textToB64(JSON.stringify(k, null, 2)), null, '관리자 비밀번호 설정');
+        // 이미 key.json 이 있으면 판 번호를 받아서 덮어쓴다
+        return fetch(API + 'key.json?t=' + Date.now(), {
+          headers: { Authorization: 'Bearer ' + tk }, cache: 'no-store'
+        }).then(function (r) { return r.ok ? r.json() : null; })
+          .catch(function () { return null; })
+          .then(function (cur) {
+            return put('key.json', textToB64(JSON.stringify(k, null, 2)),
+                       cur && cur.sha, '관리자 비밀번호 설정');
+          });
       })
       .then(function () {
         try { localStorage.setItem(KEY, tk); } catch (e) {}
@@ -358,8 +384,12 @@
 
   $('logout').addEventListener('click', function () {
     if (Object.keys(pending).length && !confirm('저장하지 않은 사진이 있습니다. 그래도 나갈까요?')) return;
-    try { localStorage.removeItem(KEY); sessionStorage.removeItem(KEY); } catch (e) {}
-    location.reload();
+    try {
+      [localStorage, sessionStorage].forEach(function (s) {
+        s.removeItem(KEY); s.removeItem(OPEN);
+      });
+    } catch (e) {}
+    location.replace(location.pathname);
   });
 
   $('gSkip').addEventListener('click', browse);
@@ -374,6 +404,20 @@
         return crypto.subtle.deriveKey(
           { name: 'PBKDF2', salt: salt, iterations: ITER, hash: 'SHA-256' },
           base, { name: 'AES-GCM', length: 256 }, false, ['encrypt', 'decrypt']);
+      });
+  }
+  // 비밀번호가 맞는지만 본다 (열쇠가 없어도 쓸 수 있게)
+  function verify(k, pw) {
+    if (!k || !k.check) return Promise.resolve(false);
+    return rawKey(pw, b642ab(k.salt), k.iter || ITER)
+      .then(function (bits) { return crypto.subtle.digest('SHA-256', bits); })
+      .then(function (h) { return ab2b64(new Uint8Array(h)) === k.check; });
+  }
+  function rawKey(pw, salt, iters) {
+    return crypto.subtle.importKey('raw', new TextEncoder().encode(pw), 'PBKDF2', false, ['deriveBits'])
+      .then(function (base) {
+        return crypto.subtle.deriveBits(
+          { name: 'PBKDF2', salt: salt, iterations: iters, hash: 'SHA-256' }, base, 256);
       });
   }
   function encrypt(text, pw) {
@@ -433,7 +477,8 @@
         original = JSON.stringify(data);
         buildText();
         render();
-        say(token ? '불러왔습니다' : '둘러보기 — 저장하려면 열쇠가 필요합니다');
+        say(token ? '불러왔습니다'
+                  : (unlocked ? '불러왔습니다 — 저장은 아직 준비 중입니다' : '둘러보기'));
       })
       .catch(function (e) { say('⚠ ' + e.message); });
   }
@@ -728,7 +773,7 @@
     $('save').disabled = !has || !token;
     $('undo').disabled = !has;
     if (has) say(token ? '고친 내용이 있습니다 — 저장하기를 누르세요'
-                       : '열쇠가 없어 저장할 수 없습니다');
+                       : '지금은 미리보기만 됩니다 (저장 준비 중)');
   }
   function stripPreview(o) {
     var c = JSON.parse(JSON.stringify(o));
