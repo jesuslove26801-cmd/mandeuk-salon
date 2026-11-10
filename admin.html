@@ -39,15 +39,32 @@
   .panel.on{display:block}
 
   /* ── 사진 슬라이드 ── */
+  /* 가로로 넘겨 보는 줄 — 컴퓨터에서는 손으로 못 미니 화살표를 둔다 */
   .slide{
     display:flex;gap:12px;overflow-x:auto;padding:4px 0 14px;
-    scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+    -webkit-overflow-scrolling:touch;scroll-behavior:smooth;
+    overscroll-behavior-x:contain;
   }
+  /* 넘기는 단추는 사진 아래에 둔다 — 사진을 가리지 않고, 폰·컴퓨터가 똑같다 */
+  .pager{display:flex;align-items:center;justify-content:center;gap:14px;margin:-4px 0 14px}
+  .nav{
+    width:52px;height:46px;border-radius:12px;border:1.5px solid var(--line);padding:0;
+    background:#fff;font-size:17px;line-height:1;color:var(--mint-deep);cursor:pointer;
+    font-family:inherit;font-weight:700;flex:none;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 1px 4px rgba(35,49,45,.08);
+  }
+  .nav:disabled{opacity:.3;cursor:default;box-shadow:none}
+  .nav:not(:disabled):active{background:var(--mint);border-color:var(--mint);color:#fff}
+  /* 몇 번째를 보고 있는지 */
+  .dots{display:flex;align-items:center;gap:6px}
+  .dots i{width:8px;height:8px;border-radius:50%;background:#cbd8d4;display:block;transition:all .2s}
+  .dots i.on{background:var(--mint);width:20px;border-radius:4px}
   .slide::-webkit-scrollbar{height:6px}
   .slide::-webkit-scrollbar-thumb{background:#c6d4d0;border-radius:3px}
   .item{
     flex:none;width:230px;background:var(--card);border-radius:16px;
-    padding:10px;box-shadow:0 2px 10px rgba(35,49,45,.1);scroll-snap-align:center;
+    padding:10px;box-shadow:0 2px 10px rgba(35,49,45,.1);
   }
   .item .no{
     display:inline-block;background:var(--mint);color:#fff;font-weight:800;
@@ -79,10 +96,11 @@
   .row button.del{flex:0 0 46px;color:var(--warn);border-color:#f0cdc9}
   .row button:disabled{opacity:.35}
   .additem{
-    flex:none;width:230px;border:2.5px dashed #bcccc7;border-radius:16px;
+    display:block;width:100%;border:2.5px dashed #bcccc7;border-radius:14px;
     background:transparent;color:var(--mint-deep);font-size:16px;font-weight:800;
-    font-family:inherit;cursor:pointer;min-height:230px;
+    font-family:inherit;cursor:pointer;padding:14px;margin-bottom:4px;
   }
+  .additem:active{background:#e8f3f0}
 
   /* ── 문구 ── */
   .field{margin-bottom:16px}
@@ -205,6 +223,12 @@
       왼쪽부터 홈페이지에 나오는 순서입니다. 옆으로 밀어서 보세요.
     </p>
     <div class="slide" id="slide"></div>
+    <div class="pager">
+      <button class="nav" id="navPrev" type="button" aria-label="앞 사진">◀</button>
+      <div class="dots" id="dots"></div>
+      <button class="nav" id="navNext" type="button" aria-label="뒤 사진">▶</button>
+    </div>
+    <button class="additem" id="addItem" type="button">＋ 새 아이 추가</button>
     <div class="note">
       사진은 <b>미용 전 · 미용 후</b> 한 쌍입니다. 한 쪽만 바꿔도 됩니다.<br>
       폰에서 고른 사진은 자동으로 작게 줄여서 올라갑니다.
@@ -503,19 +527,58 @@
     data.gallery.forEach(function (p, i) {
       s.appendChild(itemEl(p, i));
     });
-    var add = document.createElement('button');
-    add.className = 'additem';
-    add.type = 'button';
-    add.textContent = '＋ 새 아이 추가';
-    add.addEventListener('click', function () {
-      var last = data.gallery[data.gallery.length - 1] || { before: '', after: '' };
-      data.gallery.push({ before: last.before, after: last.after });
-      render(); dirty();
-      s.scrollLeft = s.scrollWidth;
-      say('칸을 하나 늘렸습니다 — 바꾸기를 눌러 새 사진을 고르세요');
-    });
-    s.appendChild(add);
+    paintDots();
+    requestAnimationFrame(function () { navState(); markDot(); });
   }
+
+  $('addItem').addEventListener('click', function () {
+    var last = data.gallery[data.gallery.length - 1] || { before: '', after: '' };
+    data.gallery.push({ before: last.before, after: last.after });
+    render(); dirty();
+    var s = $('slide');
+    requestAnimationFrame(function () { s.scrollLeft = s.scrollWidth; });
+    say('칸을 하나 늘렸습니다 — 바꾸기를 눌러 새 사진을 고르세요');
+  });
+
+  /* ── 가로 줄 넘기기 ── */
+  function step() {
+    var s = $('slide'), first = s.querySelector('.item');
+    return first ? first.getBoundingClientRect().width + 12 : 242;
+  }
+  function navState() {
+    var s = $('slide');
+    var max = s.scrollWidth - s.clientWidth;
+    $('navPrev').disabled = s.scrollLeft <= 4;
+    $('navNext').disabled = s.scrollLeft >= max - 4;
+  }
+  function paintDots() {
+    var d = $('dots'), n = data.gallery.length;
+    d.innerHTML = '';
+    if (n < 2) return;
+    for (var i = 0; i < n; i++) d.appendChild(document.createElement('i'));
+    markDot();
+  }
+  function markDot() {
+    var s = $('slide'), d = $('dots');
+    if (!d.children.length) return;
+    var idx = Math.round(s.scrollLeft / step());
+    for (var i = 0; i < d.children.length; i++) {
+      d.children[i].className = (i === idx) ? 'on' : '';
+    }
+  }
+  $('navPrev').addEventListener('click', function () {
+    $('slide').scrollBy({ left: -step(), behavior: 'smooth' });
+  });
+  $('navNext').addEventListener('click', function () {
+    $('slide').scrollBy({ left: step(), behavior: 'smooth' });
+  });
+  // 미끄러지는 중에도 재지만, 멈춘 뒤에 한 번 더 재야 끝에서 정확히 꺼진다
+  var settle = null;
+  $('slide').addEventListener('scroll', function () {
+    navState(); markDot();
+    clearTimeout(settle);
+    settle = setTimeout(function () { navState(); markDot(); }, 160);
+  }, { passive: true });
 
   function itemEl(p, i) {
     var d = document.createElement('div');
