@@ -218,6 +218,16 @@
   .rv .top{display:flex;justify-content:space-between;font-size:12px;color:var(--sub);margin-bottom:8px}
   .rv .st{color:#f5b54a;letter-spacing:1px}
   .rv p{font-size:14px;line-height:1.7}
+  /* 후기 더 보기 */
+  .more{
+    display:flex;align-items:center;justify-content:center;gap:7px;width:100%;
+    background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:13px;font-family:inherit;font-size:14.5px;font-weight:700;
+    color:var(--mint-dark);cursor:pointer;box-shadow:var(--sh-s);
+  }
+  .more span{font-size:12px;transition:transform .2s ease}
+  .more.on span{transform:rotate(180deg)}
+  .more:active{background:var(--mint-pale)}
 
   /* 위치 */
   .info{background:var(--card);border:1px solid var(--line);border-radius:19px;overflow:hidden;box-shadow:var(--sh-s)}
@@ -225,6 +235,15 @@
   .info .r:first-child{border-top:0}
   .info .r b{flex:none;width:50px;color:var(--sub);font-weight:600;font-size:13.5px}
   .open{color:var(--mint-deep);font-weight:700}
+  /* 길찾기 — 주소 읽고 바로 누를 수 있게 카드 맨 아래에 붙인다 */
+  .way{
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    padding:15px;border-top:1px solid var(--line);
+    background:var(--mint-pale);color:var(--mint-dark);
+    font-size:15px;font-weight:700;text-decoration:none;letter-spacing:-.3px;
+  }
+  .way svg{width:18px;height:18px}
+  .way:active{background:#dff4ef}
 
   footer{text-align:center;color:#9aa8a4;font-size:12px;margin-top:40px;line-height:1.9}
   footer img{width:46px;height:46px;border-radius:50%;opacity:.85;margin-bottom:9px}
@@ -262,8 +281,8 @@
   <section class="hero">
     <div class="ribbon" aria-hidden="true"></div>
     <div class="pf">
-      <img src="photos/brand.png" alt="만득이네 애견미용실 로고"
-           onerror="this.onerror=null;this.src='photos/logo.jpg'">
+      <img src="photos/w/brand.webp" alt="만득이네 애견미용실 로고"
+           onerror="this.onerror=null;this.src='photos/logo.jpg'" width="440" height="440">
     </div>
     <h1>만득이네</h1>
     <p class="sub1">평리동 애견미용실 · 대구 서구</p>
@@ -282,31 +301,31 @@
     <h2>🐶 미용 받은 아이들 <small>자동으로 넘어갑니다</small></h2>
     <div class="track">
       <div class="lane">
-        <div class="pic ba"><div class="two"><figure><img src="photos/i01.jpg" alt="미용 전 모습"><figcaption>BEFORE</figcaption></figure><figure class="aft"><img src="photos/i02.jpg" alt="미용 후 모습"><figcaption>AFTER</figcaption></figure></div></div>
-        <div class="pic ba"><div class="two"><figure><img src="photos/i06.jpg" alt="미용 전 모습"><figcaption>BEFORE</figcaption></figure><figure class="aft"><img src="photos/i05.jpg" alt="미용 후 모습"><figcaption>AFTER</figcaption></figure></div></div>
-        <div class="pic ba"><div class="two"><figure><img src="photos/i10.jpg" alt="미용 전 모습"><figcaption>BEFORE</figcaption></figure><figure class="aft"><img src="photos/i09.jpg" alt="미용 후 모습"><figcaption>AFTER</figcaption></figure></div></div>
-        <div class="pic ba"><div class="two"><figure><img src="photos/i04.jpg" alt="미용 전 모습"><figcaption>BEFORE</figcaption></figure><figure class="aft"><img src="photos/i07.jpg" alt="미용 후 모습"><figcaption>AFTER</figcaption></figure></div></div>
-        <div class="pic ba"><div class="two"><figure><img src="photos/i08.jpg" alt="미용 전 모습"><figcaption>BEFORE</figcaption></figure><figure class="aft"><img src="photos/i03.jpg" alt="미용 후 모습"><figcaption>AFTER</figcaption></figure></div></div>
-        <div class="pic"><img src="photos/p01.jpg" alt="미용 받은 아이"></div>
-        <div class="pic"><img src="photos/p02.jpg" alt="미용 받은 아이"></div>
-        <div class="pic"><img src="photos/p03.jpg" alt="미용 받은 아이"></div>
-        <div class="pic"><img src="photos/p04.jpg" alt="미용 받은 아이"></div>
-        <div class="pic"><img src="photos/p05.jpg" alt="미용 받은 아이"></div>
-        <div class="pic"><img src="photos/p06.jpg" alt="미용 받은 아이"></div>
-        <div class="pic"><img src="photos/p07.jpg" alt="미용 받은 아이"></div>
+        <div class="pic ba"><div class="two"><figure><img src="photos/w/i01.webp" alt="미용 전 모습" onerror="this.onerror=null;this.src='photos/i01.jpg'" width="440" height="587"><figcaption>BEFORE</figcaption></figure><figure class="aft"><img src="photos/w/i02.webp" alt="미용 후 모습" onerror="this.onerror=null;this.src='photos/i02.jpg'" width="440" height="586"><figcaption>AFTER</figcaption></figure></div></div>
+        <div class="pic ba"><div class="two"><figure><img src="photos/w/i06.webp" alt="미용 전 모습" onerror="this.onerror=null;this.src='photos/i06.jpg'" width="440" height="440"><figcaption>BEFORE</figcaption></figure><figure class="aft"><img src="photos/w/i05.webp" alt="미용 후 모습" onerror="this.onerror=null;this.src='photos/i05.jpg'" width="440" height="440" loading="lazy" decoding="async"><figcaption>AFTER</figcaption></figure></div></div>
+        <div class="pic ba"><div class="two"><figure><img src="photos/w/i10.webp" alt="미용 전 모습" onerror="this.onerror=null;this.src='photos/i10.jpg'" width="440" height="440" loading="lazy" decoding="async"><figcaption>BEFORE</figcaption></figure><figure class="aft"><img src="photos/w/i09.webp" alt="미용 후 모습" onerror="this.onerror=null;this.src='photos/i09.jpg'" width="440" height="440" loading="lazy" decoding="async"><figcaption>AFTER</figcaption></figure></div></div>
+        <div class="pic ba"><div class="two"><figure><img src="photos/w/i04.webp" alt="미용 전 모습" onerror="this.onerror=null;this.src='photos/i04.jpg'" width="440" height="440" loading="lazy" decoding="async"><figcaption>BEFORE</figcaption></figure><figure class="aft"><img src="photos/w/i07.webp" alt="미용 후 모습" onerror="this.onerror=null;this.src='photos/i07.jpg'" width="440" height="440" loading="lazy" decoding="async"><figcaption>AFTER</figcaption></figure></div></div>
+        <div class="pic ba"><div class="two"><figure><img src="photos/w/i08.webp" alt="미용 전 모습" onerror="this.onerror=null;this.src='photos/i08.jpg'" width="440" height="440" loading="lazy" decoding="async"><figcaption>BEFORE</figcaption></figure><figure class="aft"><img src="photos/w/i03.webp" alt="미용 후 모습" onerror="this.onerror=null;this.src='photos/i03.jpg'" width="440" height="440" loading="lazy" decoding="async"><figcaption>AFTER</figcaption></figure></div></div>
+        <div class="pic"><img src="photos/w/p01.webp" alt="미용 받은 아이" onerror="this.onerror=null;this.src='photos/p01.jpg'" width="440" height="440" loading="lazy" decoding="async"></div>
+        <div class="pic"><img src="photos/w/p02.webp" alt="미용 받은 아이" onerror="this.onerror=null;this.src='photos/p02.jpg'" width="440" height="587" loading="lazy" decoding="async"></div>
+        <div class="pic"><img src="photos/w/p03.webp" alt="미용 받은 아이" onerror="this.onerror=null;this.src='photos/p03.jpg'" width="440" height="587" loading="lazy" decoding="async"></div>
+        <div class="pic"><img src="photos/w/p04.webp" alt="미용 받은 아이" onerror="this.onerror=null;this.src='photos/p04.jpg'" width="440" height="587" loading="lazy" decoding="async"></div>
+        <div class="pic"><img src="photos/w/p05.webp" alt="미용 받은 아이" onerror="this.onerror=null;this.src='photos/p05.jpg'" width="440" height="587" loading="lazy" decoding="async"></div>
+        <div class="pic"><img src="photos/w/p06.webp" alt="미용 받은 아이" onerror="this.onerror=null;this.src='photos/p06.jpg'" width="440" height="587" loading="lazy" decoding="async"></div>
+        <div class="pic"><img src="photos/w/p07.webp" alt="미용 받은 아이" onerror="this.onerror=null;this.src='photos/p07.jpg'" width="440" height="587" loading="lazy" decoding="async"></div>
         <!-- 끊김 없이 이어지도록 같은 묶음을 한 번 더 -->
-        <div class="pic ba" aria-hidden="true"><div class="two"><figure><img src="photos/i01.jpg"><figcaption>BEFORE</figcaption></figure><figure class="aft"><img src="photos/i02.jpg"><figcaption>AFTER</figcaption></figure></div></div>
-        <div class="pic ba" aria-hidden="true"><div class="two"><figure><img src="photos/i06.jpg"><figcaption>BEFORE</figcaption></figure><figure class="aft"><img src="photos/i05.jpg"><figcaption>AFTER</figcaption></figure></div></div>
-        <div class="pic ba" aria-hidden="true"><div class="two"><figure><img src="photos/i10.jpg"><figcaption>BEFORE</figcaption></figure><figure class="aft"><img src="photos/i09.jpg"><figcaption>AFTER</figcaption></figure></div></div>
-        <div class="pic ba" aria-hidden="true"><div class="two"><figure><img src="photos/i04.jpg"><figcaption>BEFORE</figcaption></figure><figure class="aft"><img src="photos/i07.jpg"><figcaption>AFTER</figcaption></figure></div></div>
-        <div class="pic ba" aria-hidden="true"><div class="two"><figure><img src="photos/i08.jpg"><figcaption>BEFORE</figcaption></figure><figure class="aft"><img src="photos/i03.jpg"><figcaption>AFTER</figcaption></figure></div></div>
-        <div class="pic" aria-hidden="true"><img src="photos/p01.jpg"></div>
-        <div class="pic" aria-hidden="true"><img src="photos/p02.jpg"></div>
-        <div class="pic" aria-hidden="true"><img src="photos/p03.jpg"></div>
-        <div class="pic" aria-hidden="true"><img src="photos/p04.jpg"></div>
-        <div class="pic" aria-hidden="true"><img src="photos/p05.jpg"></div>
-        <div class="pic" aria-hidden="true"><img src="photos/p06.jpg"></div>
-        <div class="pic" aria-hidden="true"><img src="photos/p07.jpg"></div>
+        <div class="pic ba" aria-hidden="true"><div class="two"><figure><img src="photos/w/i01.webp" onerror="this.onerror=null;this.src='photos/i01.jpg'" width="440" height="587"><figcaption>BEFORE</figcaption></figure><figure class="aft"><img src="photos/w/i02.webp" onerror="this.onerror=null;this.src='photos/i02.jpg'" width="440" height="586"><figcaption>AFTER</figcaption></figure></div></div>
+        <div class="pic ba" aria-hidden="true"><div class="two"><figure><img src="photos/w/i06.webp" onerror="this.onerror=null;this.src='photos/i06.jpg'" width="440" height="440"><figcaption>BEFORE</figcaption></figure><figure class="aft"><img src="photos/w/i05.webp" onerror="this.onerror=null;this.src='photos/i05.jpg'" width="440" height="440" loading="lazy" decoding="async"><figcaption>AFTER</figcaption></figure></div></div>
+        <div class="pic ba" aria-hidden="true"><div class="two"><figure><img src="photos/w/i10.webp" onerror="this.onerror=null;this.src='photos/i10.jpg'" width="440" height="440" loading="lazy" decoding="async"><figcaption>BEFORE</figcaption></figure><figure class="aft"><img src="photos/w/i09.webp" onerror="this.onerror=null;this.src='photos/i09.jpg'" width="440" height="440" loading="lazy" decoding="async"><figcaption>AFTER</figcaption></figure></div></div>
+        <div class="pic ba" aria-hidden="true"><div class="two"><figure><img src="photos/w/i04.webp" onerror="this.onerror=null;this.src='photos/i04.jpg'" width="440" height="440" loading="lazy" decoding="async"><figcaption>BEFORE</figcaption></figure><figure class="aft"><img src="photos/w/i07.webp" onerror="this.onerror=null;this.src='photos/i07.jpg'" width="440" height="440" loading="lazy" decoding="async"><figcaption>AFTER</figcaption></figure></div></div>
+        <div class="pic ba" aria-hidden="true"><div class="two"><figure><img src="photos/w/i08.webp" onerror="this.onerror=null;this.src='photos/i08.jpg'" width="440" height="440" loading="lazy" decoding="async"><figcaption>BEFORE</figcaption></figure><figure class="aft"><img src="photos/w/i03.webp" onerror="this.onerror=null;this.src='photos/i03.jpg'" width="440" height="440" loading="lazy" decoding="async"><figcaption>AFTER</figcaption></figure></div></div>
+        <div class="pic" aria-hidden="true"><img src="photos/w/p01.webp" onerror="this.onerror=null;this.src='photos/p01.jpg'" width="440" height="440" loading="lazy" decoding="async"></div>
+        <div class="pic" aria-hidden="true"><img src="photos/w/p02.webp" onerror="this.onerror=null;this.src='photos/p02.jpg'" width="440" height="587" loading="lazy" decoding="async"></div>
+        <div class="pic" aria-hidden="true"><img src="photos/w/p03.webp" onerror="this.onerror=null;this.src='photos/p03.jpg'" width="440" height="587" loading="lazy" decoding="async"></div>
+        <div class="pic" aria-hidden="true"><img src="photos/w/p04.webp" onerror="this.onerror=null;this.src='photos/p04.jpg'" width="440" height="587" loading="lazy" decoding="async"></div>
+        <div class="pic" aria-hidden="true"><img src="photos/w/p05.webp" onerror="this.onerror=null;this.src='photos/p05.jpg'" width="440" height="587" loading="lazy" decoding="async"></div>
+        <div class="pic" aria-hidden="true"><img src="photos/w/p06.webp" onerror="this.onerror=null;this.src='photos/p06.jpg'" width="440" height="587" loading="lazy" decoding="async"></div>
+        <div class="pic" aria-hidden="true"><img src="photos/w/p07.webp" onerror="this.onerror=null;this.src='photos/p07.jpg'" width="440" height="587" loading="lazy" decoding="async"></div>
       </div>
     </div>
   </section>
@@ -422,6 +441,30 @@
       <p>원장님이 강아지를 대하는 모습이 진심이고, 좋은 제품을 사용해서 모질이 너무 좋아졌어요.
          가위컷 전문답게 스타일리쉬하고 매우 맘에 드는 샵입니다.</p>
     </div>
+
+    <div id="moreRv" hidden>
+      <div class="rv">
+        <div class="top"><span>먹을거조와 님</span><span class="st">★★★★★</span></div>
+        <p>겁이 너무 많아서 집에서 발톱 깎이는 것도 힘든데 너무 깔끔하게 미용해주셨어요.
+           감사합니다. 집에 와서 밥 먹고 물 먹고 우다다 엄청 했어요.</p>
+      </div>
+      <div class="rv">
+        <div class="top"><span>HK 님</span><span class="st">★★★★★</span></div>
+        <p>처음부터 세심하게 상담해 주시고, 미용도 너무 예쁘게 해주셨어요.
+           우리 강쥐가 힘들지 않도록 컨디션을 살펴가며 미용해 주신 게 느껴져서 더욱 감사했어요.
+           중간중간 사진도 보내주셔서 걱정 없이 마음 놓고 기다릴 수 있었답니다.</p>
+      </div>
+      <div class="rv">
+        <div class="top"><span>비누말자 님</span><span class="st">★★★★★</span></div>
+        <p>얼굴이랑 몸 라인이 정말 자연스럽고 손이 많이 간 게 느껴지네요. 감사합니다.</p>
+      </div>
+      <div class="rv">
+        <div class="top"><span>보글 님</span><span class="st">★★★★★</span></div>
+        <p>어느새 믿고 맡기는 곳. 한결같이 정성스러워 좋아요. 감사합니다.</p>
+      </div>
+    </div>
+
+    <button class="more" id="moreBtn" type="button">후기 더 보기 <span>▾</span></button>
   </section>
 
   <section class="sec rise">
@@ -429,13 +472,18 @@
     <div class="info">
       <div class="r"><b>주소</b><span>대구 서구 국채보상로31길 8, 5호 (평리동)</span></div>
       <div class="r"><b>위치</b><span>서대구역 화성파크드림 앞</span></div>
+      <div class="r"><b>주차</b><span>가게 앞에 주차하실 수 있어요 🚗</span></div>
       <div class="r"><b>영업</b><span>매일 10:00 – 20:00</span></div>
       <div class="r"><b>휴무</b><span class="open">연중무휴 · 일요일 공휴일도 정상영업 🤗</span></div>
+      <a class="way" href="https://m.place.naver.com/place/1204758441/location" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#2a9d8b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l19-8-8 19-2.5-8.5z"/></svg>
+        길찾기 열기
+      </a>
     </div>
   </section>
 
   <footer>
-    <img src="photos/brand.png" alt="" onerror="this.style.display='none'"><br>
+    <img src="photos/w/brand.webp" alt="" onerror="this.style.display='none'" width="440" height="440"><br>
     만득이네 · 평리동 애견미용실<br>
     대구광역시 서구 국채보상로31길 8
   </footer>
@@ -465,6 +513,19 @@
     setTimeout(function () {
       document.querySelectorAll('.rise:not(.in)').forEach(function (el) { el.classList.add('in'); });
     }, 3000);
+  })();
+
+  // 후기 더 보기 — 자바스크립트가 없으면 처음부터 펼쳐 둔다
+  (function () {
+    var box = document.getElementById('moreRv');
+    var btn = document.getElementById('moreBtn');
+    if (!box || !btn) return;
+    btn.addEventListener('click', function () {
+      var open = !box.hidden;
+      box.hidden = open;
+      btn.classList.toggle('on', !open);
+      btn.firstChild.nodeValue = open ? '후기 더 보기 ' : '후기 접기 ';
+    });
   })();
 
   // 들어오자마자 동요 틀기.
