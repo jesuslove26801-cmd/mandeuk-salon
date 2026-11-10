@@ -173,13 +173,12 @@
       <h2>🔑 처음 설정</h2>
       <p>깃허브 열쇠를 비밀번호로 잠가 둡니다. 이 설정은 한 번만 하면 됩니다.</p>
       <input type="password" id="sTok" placeholder="깃허브 열쇠 붙여넣기 (github_pat_…)" autocomplete="off">
-      <input type="password" id="sPw1" placeholder="사장님이 쓸 비밀번호 (8자 이상)" autocomplete="new-password">
+      <input type="password" id="sPw1" placeholder="사장님이 쓸 비밀번호" autocomplete="new-password">
       <input type="password" id="sPw2" placeholder="비밀번호 다시 한 번" autocomplete="new-password">
       <button id="setupOk" type="button">잠그고 시작하기</button>
       <button class="skip" id="gSkip2" type="button">그냥 둘러보기</button>
       <div class="note" style="margin-bottom:0">
-        비밀번호는 어디에도 저장되지 않습니다. 잊어버리면 이 설정을 처음부터 다시 해야 합니다.<br>
-        쉬운 낱말(가게 이름, 전화번호)은 피하고 <b>8자 이상</b>으로 정해 주세요.
+        비밀번호는 어디에도 저장되지 않습니다. 잊어버리면 이 설정을 처음부터 다시 해야 합니다.
       </div>
     </div>
 
@@ -328,7 +327,7 @@
   $('setupOk').addEventListener('click', function () {
     var tk = $('sTok').value.trim(), p1 = $('sPw1').value, p2 = $('sPw2').value;
     if (!tk) { showErr('깃허브 열쇠를 넣어 주세요.'); return; }
-    if (p1.length < 8) { showErr('비밀번호는 8자 이상으로 정해 주세요.'); return; }
+    if (p1.length < 4) { showErr('비밀번호는 4자 이상으로 정해 주세요.'); return; }
     if (p1 !== p2) { showErr('비밀번호 두 칸이 서로 다릅니다.'); return; }
     showErr(''); busy('열쇠를 확인하는 중…');
     $('setupOk').disabled = true;
