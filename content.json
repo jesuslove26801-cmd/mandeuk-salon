@@ -1,11 +1,26 @@
 {
   "updated": "2026-11-10",
   "gallery": [
-    { "before": "photos/w/i01.webp", "after": "photos/w/i02.webp" },
-    { "before": "photos/w/i06.webp", "after": "photos/w/i05.webp" },
-    { "before": "photos/w/i10.webp", "after": "photos/w/i09.webp" },
-    { "before": "photos/w/i04.webp", "after": "photos/w/i07.webp" },
-    { "before": "photos/w/i08.webp", "after": "photos/w/i03.webp" }
+    {
+      "before": "photos/w/i06.webp",
+      "after": "photos/w/i05.webp"
+    },
+    {
+      "before": "photos/w/i01.webp",
+      "after": "photos/w/i02.webp"
+    },
+    {
+      "before": "photos/w/i10.webp",
+      "after": "photos/w/i09.webp"
+    },
+    {
+      "before": "photos/w/i04.webp",
+      "after": "photos/w/i07.webp"
+    },
+    {
+      "before": "photos/w/i08.webp",
+      "after": "photos/w/i03.webp"
+    }
   ],
   "text": {
     "sub2": "아이를 향한 진심이 머무는 곳",
