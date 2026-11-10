@@ -2,12 +2,12 @@
   "updated": "2026-11-10",
   "gallery": [
     {
-      "before": "photos/w/i06.webp",
-      "after": "photos/w/i05.webp"
-    },
-    {
       "before": "photos/w/i01.webp",
       "after": "photos/w/i02.webp"
+    },
+    {
+      "before": "photos/w/i06.webp",
+      "after": "photos/w/i05.webp"
     },
     {
       "before": "photos/w/i10.webp",
