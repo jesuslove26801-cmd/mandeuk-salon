@@ -12,6 +12,8 @@
     --warn:#c2554a; --card:#fff;
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  /* hidden 을 켰는데 display 규칙이 이겨 버리면 안 숨는다. 이 한 줄이 그걸 막는다 */
+  [hidden]{display:none !important}
   body{
     margin:0;background:var(--bg);color:var(--ink);
     font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
@@ -52,7 +54,8 @@
     font-size:13px;padding:2px 10px;border-radius:20px;margin-bottom:8px;
   }
   .pair{display:flex;gap:6px}
-  .half{flex:1;min-width:0;position:relative}
+  .half{flex:1;min-width:0}
+  .ph{position:relative}
   .half img{
     width:100%;height:150px;object-fit:cover;border-radius:10px;display:block;
     background:#e8efec;
@@ -69,11 +72,11 @@
   }
   .row{display:flex;gap:6px;margin-top:8px}
   .row button{
-    flex:1;padding:10px 4px;font-size:15px;font-weight:800;border-radius:10px;
+    flex:1;padding:10px 2px;font-size:14px;font-weight:800;border-radius:10px;
     border:1.5px solid var(--line);background:#fff;color:var(--ink);
-    font-family:inherit;cursor:pointer;
+    font-family:inherit;cursor:pointer;white-space:nowrap;letter-spacing:-.5px;
   }
-  .row button.del{color:var(--warn);border-color:#f0cdc9}
+  .row button.del{flex:0 0 46px;color:var(--warn);border-color:#f0cdc9}
   .row button:disabled{opacity:.35}
   .additem{
     flex:none;width:230px;border:2.5px dashed #bcccc7;border-radius:16px;
@@ -552,8 +555,8 @@
   function half(side, src, i) {
     var ko = side === 'before' ? '미용 전' : '미용 후';
     return '<div class="half' + (side === 'after' ? ' aft' : '') + '">' +
-      '<img src="' + esc(src) + '" alt="">' +
-      '<span class="tag">' + ko + '</span>' +
+      '<div class="ph"><img src="' + esc(src) + '" alt="">' +
+      '<span class="tag">' + ko + '</span></div>' +
       '<button type="button" data-side="' + side + '">바꾸기</button>' +
       '</div>';
   }
